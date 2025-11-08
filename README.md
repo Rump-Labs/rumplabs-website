@@ -1,36 +1,61 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Rump Labs Payment Desk
 
-## Getting Started
+Eligibility-aware checkout that combines Razorpay payments with SheerID student verification. Domestic visitors from India see ₹10,000 pricing with an instant ₹5,000 concession once their student ID is verified. International visitors are quoted the INR equivalent of $200.
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18.18+ / 20+
+- Razorpay account with API key/secret
+- (Optional) SheerID hosted verification program for student discount feature
+
+### 1. Install dependencies
+
+```bash
+npm install
+```
+
+### 2. Configure environment
+
+Copy `env.example` to `.env.local` and populate the keys:
+
+```
+RAZORPAY_KEY_ID=rzp_test_xxxxxxxxxxxxx
+RAZORPAY_KEY_SECRET=your_razorpay_secret
+USD_TO_INR_RATE=83                      # optional override
+# Optional: SheerID (only needed for student discount feature)
+NEXT_PUBLIC_SHEERID_PROGRAM_ID=your_sheerid_program
+NEXT_PUBLIC_SHEERID_ORIGIN=https://services.sandbox.sheerid.com
+```
+
+`USD_TO_INR_RATE` lets you fine-tune the exchange rate without redeploying. If you don't configure SheerID, the student discount option will be hidden and the payment flow will work with standard domestic (₹10,000) and international pricing only.
+
+### 3. Run locally
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Visit `http://localhost:3000`. For local testing you can spoof the Geo-IP header with tools such as curl:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+curl -H "x-vercel-ip-country: IN" http://localhost:3000/api/quote
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Architecture highlights
 
-## Learn More
+- `app/api/quote` inspects request headers (`x-vercel-ip-country`, `cf-ipcountry`, etc.) to classify visitors as domestic or international and calculate the correct amount.
+- `app/api/payments/order` safely rebuilds the pricing server-side, creates a Razorpay order via the official Node SDK, and hands back the public key for checkout.
+- `SheerIDModal` (optional) embeds the hosted verification experience in an iframe and listens for the `verification.completed` postMessage event from SheerID before enabling the discount. If SheerID isn't configured, the student discount section is hidden.
+- `CheckoutButton` lazy-loads the Razorpay checkout script, prefills buyer details, and surfaces success/error feedback inline.
 
-To learn more about Next.js, take a look at the following resources:
+### Production checklist
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Swap sandbox Razorpay keys for live credentials.
+- (Optional) If using SheerID, update `NEXT_PUBLIC_SHEERID_ORIGIN` to the production SheerID domain if it differs from the sandbox endpoint.
+- Configure a webhook (outside the scope of this demo) to reconcile successful payments and completed SheerID verifications in your CRM.
+- Ensure your deployment platform forwards country headers (Vercel exposes `x-vercel-ip-country` automatically).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Additional reading
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Razorpay Node SDK orders: https://github.com/razorpay/razorpay-node/blob/master/documents/order.md
+- Next.js App Router guides: https://nextjs.org/docs/app/building-your-application
