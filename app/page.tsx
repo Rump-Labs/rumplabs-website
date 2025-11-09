@@ -442,20 +442,12 @@ export default function Home() {
             <section id="pricing" className="flex flex-col gap-6 rounded-3xl bg-white text-slate-900 shadow-2xl shadow-black/10 transition-all">
               <div className="space-y-2 rounded-t-3xl bg-gradient-to-r from-emerald-100 via-cyan-100 to-sky-100 px-8 py-6">
                 <p className="text-sm font-semibold text-teal-800">
-                  {loadingQuote ? "Detecting your region…" : quote?.classification === "domestic" ? "🇮🇳 India Pricing" : "🌍 International Pricing"}
+                  Course Enrollment
                 </p>
                 <div className="flex items-baseline gap-3">
                   <span className="text-4xl font-bold text-teal-900">{formattedAmount}</span>
                   <span className="text-sm text-slate-600">course fee</span>
                 </div>
-                {quote && (
-                  <p className="text-xs text-slate-600">
-                    {quote.reason}
-                  </p>
-                )}
-                {quoteError && (
-                  <p className="text-xs font-medium text-rose-600">{quoteError}</p>
-                )}
               </div>
 
               <form className="space-y-5 px-8 pb-8">
