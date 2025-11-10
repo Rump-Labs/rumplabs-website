@@ -23,32 +23,52 @@ const currencyFormatter = new Intl.NumberFormat("en-IN", {
   maximumFractionDigits: 0,
 });
 
-const lectures = [
-  { num: 1, title: "Introduction to Blockchains" },
-  { num: 2, title: "Math Primer: Elliptic Curve Cryptography" },
-  { num: 3, title: "Basics of Cryptography Primer: Public Key Crypto, Signatures, Commitment Scheme" },
-  { num: 4, title: "Introduction to ZKPs: Schnorr Protocol, BulletProofs" },
-  { num: 5, title: "Applications of ZKPs in Blockchains" },
-  { num: 6, title: "Polynomial Commitment Schemes: KZG, Plonkish, FRI" },
-  { num: 7, title: "Zk-SNARKs Primer: Groth 16, Sonic, Marlin, PLONK and its variants" },
-  { num: 8, title: "Zk-STARKs" },
-  { num: 9, title: "Recursive Proof Systems: Mina, IVC, Halo2, Nova, SuperNova, HyperNova, CCS" },
-  { num: 10, title: "Lookup Arguments: Plookup, LogUp, CQ, Lasso, Jolt" },
-  { num: 11, title: "Sum Check Protocols: LFKN, GKR, Optimisations" },
-  { num: 12, title: "Zk-Rollups - Zk-Sync Era, Scroll, Polygon (Zero, EVM), StarkNet" },
-  { num: 13, title: "Zk-EVM - Hermez, Sovereign Labs" },
-  { num: 14, title: "Zk-VM - Risc0, Succinct SP1, Polygon Miden" },
-  { num: 15, title: "Zk-Bridges - nil foundation, Succinct Labs" },
-  { num: 16, title: "Privacy-Preserving Smart Contracts with Solidity - Aztec" },
-  { num: 17, title: "Writing Circuits with DSLs - Leo, Zokrates, Circom, Halo2, Noir" },
-  { num: 18, title: "Starkware Ecosystem - StarkNet, StarkEx, Cairo" },
-  { num: 19, title: "Project Presentations" },
-  { num: 20, title: "Project Presentations" },
+const courseModules = [
+  {
+    title: "Build Strong Foundations",
+    description: "Learn blockchain basics, cryptographic primitives, and the math behind elliptic curves and commitments.",
+    icon: "🔐",
+  },
+  {
+    title: "Understand Core ZKP Protocols",
+    description: "Explore interactive proofs like Schnorr and Bulletproofs, and see how privacy is achieved without revealing data.",
+    icon: "🔒",
+  },
+  {
+    title: "Dive into Modern ZK Systems",
+    description: "Master leading proof systems — Groth16, PLONK, STARKs, and recursive frameworks like Halo2, Nova, and SuperNova.",
+    icon: "⚡",
+  },
+  {
+    title: "Learn Cutting-Edge Techniques",
+    description: "Grasp the concepts of lookup arguments, sum-check protocols, and polynomial commitments like KZG and FRI.",
+    icon: "🧠",
+  },
+  {
+    title: "Apply ZK to Real-World Blockchain Projects",
+    description: "Understand ZK-Rollups, ZK-EVMs, ZK-VMs, and ZK-Bridges, with case studies from ZkSync, StarkNet, Polygon, and Succinct Labs.",
+    icon: "🌐",
+  },
+  {
+    title: "Get Practical with Tools & DSLs",
+    description: "Write your own ZK circuits using frameworks like Circom, Halo2, Noir, Leo, and Zokrates.",
+    icon: "🛠️",
+  },
+  {
+    title: "Build Privacy-Preserving Smart Contracts",
+    description: "Learn to create confidential applications on Ethereum using Aztec and similar ecosystems.",
+    icon: "📜",
+  },
+  {
+    title: "Showcase Your Work",
+    description: "Conclude with hands-on project presentations, demonstrating a full ZK-based blockchain application.",
+    icon: "🎯",
+  },
 ];
 
 const courseHighlights = [
   { icon: "📅", title: "10 Week Course", desc: "Comprehensive structured learning" },
-  { icon: "🎓", title: "2 Lectures per Week", desc: "Saturdays & Sundays, 11 AM - 1 PM" },
+  { icon: "🎓", title: "2 Lectures per Week", desc: "Saturdays & Sundays, 11 AM - 1 PM IST" },
   { icon: "⏱️", title: "2 Hours Each Lecture", desc: "In-depth coverage of topics" },
   { icon: "👥", title: "Group Projects", desc: "Collaborative hands-on experience" },
   { icon: "🎤", title: "Project Presentations", desc: "Showcase your work at the end" },
@@ -169,8 +189,8 @@ export default function Home() {
 
       <div className="relative mx-auto w-full max-w-7xl px-6 py-8 lg:px-12">
         {/* Header */}
-        <header className="flex items-center justify-between">
-          <BrandLogo size={56} />
+        <header className="sticky top-0 z-50 flex items-center justify-between rounded-2xl bg-white/5 px-6 py-4 backdrop-blur-md transition-all lg:px-8">
+          <BrandLogo size={140} />
           <div className="hidden gap-6 text-sm font-medium md:flex">
             <a href="#syllabus" className="text-white/80 transition hover:text-white">Syllabus</a>
             <a href="#instructor" className="text-white/80 transition hover:text-white">Instructor</a>
@@ -235,95 +255,36 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Syllabus Section */}
+        {/* Course Modules Section */}
         <section id="syllabus" className="mt-24">
           <div className="mx-auto max-w-6xl">
-            <h2 className="mb-4 text-center text-3xl font-bold md:text-4xl">Complete Course Syllabus</h2>
-            <p className="mb-8 text-center text-white/70">20 Lectures covering everything from basics to advanced ZK protocols</p>
+            <div className="mb-12 text-center">
+              <h2 className="mb-4 text-3xl font-bold md:text-4xl">What You'll Learn</h2>
+              <p className="mx-auto max-w-3xl text-lg text-white/70">
+                Zero-Knowledge Proofs in Blockchain: Theory and Applications
+              </p>
+              <p className="mx-auto mt-2 max-w-3xl text-base text-white/60">
+                A hands-on journey from blockchain fundamentals to advanced ZK systems powering the next generation of privacy and scalability.
+              </p>
+            </div>
             
-            {/* Scrollable Timeline Container */}
-            <div className="relative rounded-3xl bg-white/5 p-8 backdrop-blur-sm">
-              {/* Gradient overlays for scroll indication */}
-              <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-12 bg-gradient-to-r from-[#1d6c7a] to-transparent" />
-              <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-12 bg-gradient-to-l from-[#1d6c7a] to-transparent" />
-              <div className="pointer-events-none absolute bottom-0 left-0 z-10 h-12 w-full bg-gradient-to-t from-[#1d6c7a]/50 to-transparent md:hidden" />
-              
-              {/* Scrollable content */}
-              <div className="relative max-h-[600px] overflow-y-auto pr-4 scrollbar-thin">
-                {/* Timeline line */}
-                <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-emerald-400 via-cyan-400 to-emerald-400 opacity-30" />
-                
-                {/* Lectures */}
-                <div className="relative space-y-6">
-                  {lectures.map((lecture) => (
-                    <div
-                      key={lecture.num}
-                      className="group relative flex gap-6 transition-all duration-300 hover:translate-x-2"
-                    >
-                      {/* Timeline dot */}
-                      <div className="relative z-10 flex-shrink-0">
-                        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-emerald-400 to-cyan-400 text-sm font-bold text-slate-900 shadow-lg transition-all duration-300 group-hover:scale-110 group-hover:shadow-xl group-hover:shadow-emerald-400/50">
-                          {lecture.num}
-                        </div>
-                        {/* Connecting line to card */}
-                        <div className="absolute left-full top-1/2 h-0.5 w-6 -translate-y-1/2 bg-gradient-to-r from-cyan-400/50 to-transparent" />
-                      </div>
-                      
-                      {/* Lecture card */}
-                      <div className="flex-1 rounded-xl bg-white/10 p-5 backdrop-blur-sm transition-all duration-300 group-hover:bg-white/15 group-hover:shadow-lg">
-                        <div className="flex items-start justify-between gap-4">
-                          <div className="flex-1">
-                            <div className="mb-1 flex items-center gap-2">
-                              <span className="text-xs font-bold uppercase tracking-wider text-emerald-300">
-                                Lecture {lecture.num}
-                              </span>
-                              {lecture.num <= 4 && (
-                                <span className="rounded-full bg-emerald-500/20 px-2 py-0.5 text-xs font-semibold text-emerald-300">
-                                  Foundations
-                                </span>
-                              )}
-                              {lecture.num >= 5 && lecture.num <= 11 && (
-                                <span className="rounded-full bg-cyan-500/20 px-2 py-0.5 text-xs font-semibold text-cyan-300">
-                                  Core ZK
-                                </span>
-                              )}
-                              {lecture.num >= 12 && lecture.num <= 18 && (
-                                <span className="rounded-full bg-purple-500/20 px-2 py-0.5 text-xs font-semibold text-purple-300">
-                                  Applications
-                                </span>
-                              )}
-                              {lecture.num >= 19 && (
-                                <span className="rounded-full bg-amber-500/20 px-2 py-0.5 text-xs font-semibold text-amber-300">
-                                  Projects
-                                </span>
-                              )}
-                            </div>
-                            <h3 className="text-base font-semibold leading-relaxed text-white transition-colors group-hover:text-cyan-100">
-                              {lecture.title}
-                            </h3>
-                          </div>
-                          <div className="flex-shrink-0 opacity-0 transition-opacity group-hover:opacity-100">
-                            <svg className="h-5 w-5 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                            </svg>
-                          </div>
-                        </div>
-                      </div>
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-2">
+              {courseModules.map((module, idx) => (
+                <div
+                  key={idx}
+                  className="group relative rounded-2xl bg-white/10 p-6 backdrop-blur-sm transition-all duration-300 hover:bg-white/15 hover:scale-[1.02] hover:shadow-xl"
+                >
+                  <div className="mb-4 flex items-center gap-4">
+                    <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-400/20 to-cyan-400/20 text-3xl backdrop-blur-sm">
+                      {module.icon}
                     </div>
-                  ))}
+                    <h3 className="text-xl font-bold text-white">{module.title}</h3>
+                  </div>
+                  <p className="text-sm leading-relaxed text-white/80">
+                    {module.description}
+                  </p>
                 </div>
-              </div>
-              
-              {/* Scroll hint */}
-              <div className="mt-4 flex items-center justify-center gap-2 text-xs text-white/50">
-                <svg className="h-4 w-4 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-                <span>Scroll to explore all lectures</span>
-                <svg className="h-4 w-4 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </div>
+              ))}
             </div>
           </div>
         </section>
@@ -346,34 +307,77 @@ export default function Home() {
                 <div className="flex-1 text-center md:text-left">
                   <h3 className="mb-2 text-2xl font-bold text-white">Hridam Basu</h3>
                   <p className="mb-4 text-lg text-emerald-300">Founder, Senior Cryptography Researcher & Engineer</p>
-                  <div className="mb-4 space-y-2 text-sm text-white/80">
-                    <p>Alumni: <span className="font-semibold text-white">Northeastern University (USA)</span> • <span className="font-semibold text-white">Jadavpur University</span></p>
-                    <p>Cryptography and blockchain researcher with global perspective, pioneer in zero-knowledge proofs and next-gen Web3 solutions.</p>
+                  <div className="mb-6 space-y-3 text-sm leading-relaxed text-white/80">
+                    <p>
+                      Hridam Basu is the Founder of Rump Labs. He has over a decade of experience in Cryptography Research and Engineering in the Blockchain industry. He has previously worked with leading Web3 projects such as Ethereum Foundation's Privacy and Scaling Explorations (PSE) team, Polygon, Aztec, Findora, Circularise, and Bolt Labs, building advanced systems based on zero-knowledge proofs and secure multiparty computation.
+                    </p>
+                    <p>
+                      His work spans confidential transactions, privacy-preserving identity solutions, supply chain traceability, and blockchain gaming wallets. Hridam has also held research roles at AT&T Labs, NTT Labs, and TCS Labs, and has been an invited speaker at international conferences like Devcon and universities worldwide.
+                    </p>
+                    <p>
+                      He holds an M.S. in Computer Science from <span className="font-semibold text-white">Northeastern University, Boston</span>, and a B.E. in Information Technology from <span className="font-semibold text-white">Jadavpur University, Kolkata</span>.
+                    </p>
                   </div>
                   <div className="flex flex-wrap justify-center gap-3 md:justify-start">
                     <a
                       href="https://www.linkedin.com/in/hridam-basu/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="rounded-full bg-white/10 px-4 py-2 text-xs font-semibold text-white transition hover:bg-white/20"
+                      className="group flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-xs font-semibold text-white transition hover:bg-white/20"
+                      aria-label="LinkedIn"
                     >
-                      LinkedIn Profile
+                      <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                      </svg>
+                      <span>LinkedIn</span>
                     </a>
                     <a
                       href="https://github.com/hridambasu"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="rounded-full bg-white/10 px-4 py-2 text-xs font-semibold text-white transition hover:bg-white/20"
+                      className="group flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-xs font-semibold text-white transition hover:bg-white/20"
+                      aria-label="GitHub"
                     >
-                      GitHub
+                      <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd"/>
+                      </svg>
+                      <span>GitHub</span>
+                    </a>
+                    <a
+                      href="https://t.me/hridambasu"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-xs font-semibold text-white transition hover:bg-white/20"
+                      aria-label="Telegram"
+                    >
+                      <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                      </svg>
+                      <span>Telegram</span>
+                    </a>
+                    <a
+                      href="https://x.com/hridambasu"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-xs font-semibold text-white transition hover:bg-white/20"
+                      aria-label="X (Twitter)"
+                    >
+                      <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                      </svg>
+                      <span>X</span>
                     </a>
                     <a
                       href="https://wa.me/919007915334"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="rounded-full bg-emerald-500/20 px-4 py-2 text-xs font-semibold text-emerald-100 transition hover:bg-emerald-500/30"
+                      className="group flex items-center gap-2 rounded-full bg-emerald-500/20 px-4 py-2 text-xs font-semibold text-emerald-100 transition hover:bg-emerald-500/30"
+                      aria-label="WhatsApp"
                     >
-                      WhatsApp: 9007915334
+                      <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                      </svg>
+                      <span>WhatsApp</span>
                     </a>
                   </div>
                 </div>
@@ -402,7 +406,7 @@ export default function Home() {
                   </li>
                   <li className="flex items-start gap-3">
                     <span className="text-emerald-400">✓</span>
-                    <span><strong className="text-white">Schedule:</strong> Saturdays & Sundays, 11 AM - 1 PM</span>
+                    <span><strong className="text-white">Schedule:</strong> Saturdays & Sundays, 11 AM - 1 PM IST</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <span className="text-emerald-400">✓</span>
@@ -418,24 +422,6 @@ export default function Home() {
                   </li>
                 </ul>
               </div>
-
-              <dl className="mt-12 grid gap-6 text-sm text-white/80 md:grid-cols-3">
-                <div>
-                  <dt className="font-medium text-white">Domestic</dt>
-                  <dd className="text-2xl font-bold text-emerald-300">₹{quote?.domesticINR.toLocaleString("en-IN") ?? "10,000"}</dd>
-                </div>
-                <div>
-                  <dt className="font-medium text-white">Student</dt>
-                  <dd className="text-2xl font-bold text-cyan-300">₹{quote?.studentINR.toLocaleString("en-IN") ?? "5,000"}</dd>
-                </div>
-                <div>
-                  <dt className="font-medium text-white">International</dt>
-                  <dd className="text-2xl font-bold text-white">
-                    ₹{quote?.internationalINR.toLocaleString("en-IN") ?? "16,600"}
-                    <span className="block text-xs text-white/60">≈ $200 @ ₹{quote?.usdToInrRate ?? 83}</span>
-                  </dd>
-                </div>
-              </dl>
             </div>
 
             {/* Payment Form */}
@@ -562,10 +548,52 @@ export default function Home() {
               </div>
             </div>
             <div>
-              <h4 className="mb-4 font-semibold text-white">Instructor</h4>
-              <div className="space-y-2 text-sm text-white/70">
-                <p><a href="https://www.linkedin.com/in/hridam-basu/" target="_blank" rel="noopener noreferrer" className="text-emerald-300 hover:underline">LinkedIn Profile</a></p>
-                <p><a href="https://github.com/hridambasu" target="_blank" rel="noopener noreferrer" className="text-emerald-300 hover:underline">GitHub Profile</a></p>
+              <h4 className="mb-4 font-semibold text-white">Connect</h4>
+              <div className="flex flex-wrap gap-3">
+                <a
+                  href="https://www.linkedin.com/in/hridam-basu/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20"
+                  aria-label="LinkedIn"
+                >
+                  <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                  </svg>
+                </a>
+                <a
+                  href="https://github.com/hridambasu"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20"
+                  aria-label="GitHub"
+                >
+                  <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd"/>
+                  </svg>
+                </a>
+                <a
+                  href="https://t.me/hridambasu"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20"
+                  aria-label="Telegram"
+                >
+                  <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                  </svg>
+                </a>
+                <a
+                  href="https://x.com/hridambasu"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20"
+                  aria-label="X (Twitter)"
+                >
+                  <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                  </svg>
+                </a>
               </div>
             </div>
             <div>

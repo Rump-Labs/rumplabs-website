@@ -1,6 +1,7 @@
 import Razorpay from "razorpay";
 import { NextResponse } from "next/server";
 import { amountInPaise, buildPricing } from "@/lib/pricing";
+import { supabase } from "@/lib/supabase";
 
 interface CheckoutRequestBody {
   studentVerified?: boolean;
@@ -38,6 +39,33 @@ export async function POST(request: Request) {
         student_discount: pricing.studentDiscountApplied ? "yes" : "no",
       },
     });
+
+    // Save order and customer data to Supabase
+    if (body.customer) {
+      try {
+        const { error } = await supabase.from('enrollments').insert({
+          razorpay_order_id: order.id,
+          name: body.customer.name,
+          email: body.customer.email,
+          contact: body.customer.contact,
+          amount_due_inr: pricing.amountDueINR,
+          classification: pricing.classification,
+          country_code: pricing.countryCode,
+          student_verified: body.studentVerified || false,
+          student_discount_applied: pricing.studentDiscountApplied,
+          payment_status: 'pending',
+          created_at: new Date().toISOString(),
+        });
+
+        if (error) {
+          console.error('Failed to save enrollment to Supabase:', error);
+          // Don't fail the request if Supabase save fails
+        }
+      } catch (supabaseError) {
+        console.error('Supabase error:', supabaseError);
+        // Continue even if Supabase fails
+      }
+    }
 
     return NextResponse.json({
       orderId: order.id,

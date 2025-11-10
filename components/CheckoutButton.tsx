@@ -66,7 +66,25 @@ export function CheckoutButton(props: CheckoutButtonProps) {
         theme: {
           color: "#2C8A91",
         },
-        handler: (paymentResponse) => {
+        handler: async (paymentResponse) => {
+          // Verify payment with backend
+          try {
+            const verifyResponse = await fetch("/api/payments/verify", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                ...paymentResponse,
+                customer,
+              }),
+            });
+
+            if (!verifyResponse.ok) {
+              console.error("Payment verification failed");
+            }
+          } catch (error) {
+            console.error("Error verifying payment:", error);
+          }
+
           onSuccess(paymentResponse);
         },
         modal: {
