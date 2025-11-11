@@ -41,7 +41,7 @@ const courseModules = [
   },
   {
     title: "Learn Cutting-Edge Techniques",
-    description: "Grasp the concepts of lookup arguments, sum-check protocols, and polynomial commitments like KZG and FRI.",
+    description: "Grasp the concepts of lookup arguments, sum-check protocols, and polynomial commitments like KZG.",
     icon: "🧠",
   },
   {
@@ -89,6 +89,16 @@ export default function Home() {
     name: "",
     email: "",
     contact: "",
+    profession: "",
+    university: "",
+    major: "",
+    currentCompany: "",
+    twitterHandle: "",
+    interestReason: "",
+    knowledgeLevel: "",
+    telegramId: "",
+    linkedinId: "",
+    githubId: "",
   });
 
   useEffect(() => {
@@ -162,7 +172,7 @@ export default function Home() {
     setAlert({ type: "error", text: message });
   };
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setFormData((prev) => ({
       ...prev,
       [event.target.name]: event.target.value,
@@ -172,7 +182,15 @@ export default function Home() {
   const formValid =
     formData.name.trim().length > 2 &&
     /\S+@\S+\.\S+/.test(formData.email) &&
-    formData.contact.trim().length >= 8;
+    formData.contact.trim().length >= 8 &&
+    formData.profession !== "" &&
+    formData.university.trim().length > 0 &&
+    formData.major.trim().length > 0 &&
+    formData.interestReason.trim().length > 0 &&
+    formData.knowledgeLevel !== "" &&
+    formData.telegramId.trim().length > 0 &&
+    formData.linkedinId.trim().length > 0 &&
+    formData.githubId.trim().length > 0;
 
   const scrollToEnroll = () => {
     const pricingElement = document.getElementById("pricing");
@@ -439,7 +457,7 @@ export default function Home() {
               <form className="space-y-5 px-8 pb-8">
                 <div className="grid gap-4">
                   <label className="text-sm font-semibold text-slate-700" htmlFor="name">
-                    Full name
+                    Name <span className="text-rose-500">*</span>
                   </label>
                   <input
                     id="name"
@@ -453,7 +471,7 @@ export default function Home() {
                 </div>
                 <div className="grid gap-4">
                   <label className="text-sm font-semibold text-slate-700" htmlFor="email">
-                    Email address
+                    Email ID <span className="text-rose-500">*</span>
                   </label>
                   <input
                     id="email"
@@ -468,7 +486,7 @@ export default function Home() {
                 </div>
                 <div className="grid gap-4">
                   <label className="text-sm font-semibold text-slate-700" htmlFor="contact">
-                    Phone number
+                    Phone Number/WhatsApp <span className="text-rose-500">*</span>
                   </label>
                   <input
                     id="contact"
@@ -477,6 +495,162 @@ export default function Home() {
                     value={formData.contact}
                     onChange={handleChange}
                     placeholder="+91 98765 43210"
+                    className="w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm shadow-inner focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-100"
+                  />
+                </div>
+
+                <div className="grid gap-4">
+                  <label className="text-sm font-semibold text-slate-700" htmlFor="profession">
+                    Profession <span className="text-rose-500">*</span>
+                  </label>
+                  <select
+                    id="profession"
+                    name="profession"
+                    value={formData.profession}
+                    onChange={handleChange}
+                    className="w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm shadow-inner focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-100"
+                  >
+                    <option value="">Select profession</option>
+                    <option value="Student">Student</option>
+                    <option value="Industry Professional">Industry Professional</option>
+                    <option value="Both">Both</option>
+                  </select>
+                </div>
+
+                <div className="grid gap-4">
+                  <label className="text-sm font-semibold text-slate-700" htmlFor="university">
+                    University/College <span className="text-rose-500">*</span>
+                  </label>
+                  <input
+                    id="university"
+                    name="university"
+                    type="text"
+                    value={formData.university}
+                    onChange={handleChange}
+                    placeholder="Your university or college name"
+                    className="w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm shadow-inner focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-100"
+                  />
+                </div>
+
+                <div className="grid gap-4">
+                  <label className="text-sm font-semibold text-slate-700" htmlFor="major">
+                    Major <span className="text-rose-500">*</span>
+                  </label>
+                  <input
+                    id="major"
+                    name="major"
+                    type="text"
+                    value={formData.major}
+                    onChange={handleChange}
+                    placeholder="Your field of study"
+                    className="w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm shadow-inner focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-100"
+                  />
+                </div>
+
+                <div className="grid gap-4">
+                  <label className="text-sm font-semibold text-slate-700" htmlFor="currentCompany">
+                    Current Company
+                  </label>
+                  <input
+                    id="currentCompany"
+                    name="currentCompany"
+                    type="text"
+                    value={formData.currentCompany}
+                    onChange={handleChange}
+                    placeholder="Your current company (if applicable)"
+                    className="w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm shadow-inner focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-100"
+                  />
+                </div>
+
+                <div className="grid gap-4">
+                  <label className="text-sm font-semibold text-slate-700" htmlFor="twitterHandle">
+                    Twitter/X Handle
+                  </label>
+                  <input
+                    id="twitterHandle"
+                    name="twitterHandle"
+                    type="text"
+                    value={formData.twitterHandle}
+                    onChange={handleChange}
+                    placeholder="@yourhandle"
+                    className="w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm shadow-inner focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-100"
+                  />
+                </div>
+
+                <div className="grid gap-4">
+                  <label className="text-sm font-semibold text-slate-700" htmlFor="interestReason">
+                    Why are you interested in this course? <span className="text-rose-500">*</span>
+                  </label>
+                  <textarea
+                    id="interestReason"
+                    name="interestReason"
+                    value={formData.interestReason}
+                    onChange={handleChange}
+                    rows={4}
+                    placeholder="Tell us why you want to join this course..."
+                    className="w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm shadow-inner focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-100 resize-none"
+                  />
+                </div>
+
+                <div className="grid gap-4">
+                  <label className="text-sm font-semibold text-slate-700" htmlFor="knowledgeLevel">
+                    Assess your Blockchain/Cryptography Knowledge <span className="text-rose-500">*</span>
+                  </label>
+                  <select
+                    id="knowledgeLevel"
+                    name="knowledgeLevel"
+                    value={formData.knowledgeLevel}
+                    onChange={handleChange}
+                    className="w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm shadow-inner focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-100"
+                  >
+                    <option value="">Select your level</option>
+                    <option value="Beginner">Beginner</option>
+                    <option value="Intermediate">Intermediate</option>
+                    <option value="Expert">Expert</option>
+                  </select>
+                </div>
+
+                <div className="grid gap-4">
+                  <label className="text-sm font-semibold text-slate-700" htmlFor="telegramId">
+                    Telegram ID <span className="text-rose-500">*</span>
+                  </label>
+                  <input
+                    id="telegramId"
+                    name="telegramId"
+                    type="text"
+                    value={formData.telegramId}
+                    onChange={handleChange}
+                    placeholder="@yourtelegram"
+                    className="w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm shadow-inner focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-100"
+                  />
+                </div>
+
+                <div className="grid gap-4">
+                  <label className="text-sm font-semibold text-slate-700" htmlFor="linkedinId">
+                    LinkedIn ID <span className="text-rose-500">*</span>
+                  </label>
+                  <input
+                    id="linkedinId"
+                    name="linkedinId"
+                    type="text"
+                    value={formData.linkedinId}
+                    onChange={handleChange}
+                    placeholder="linkedin.com/in/yourprofile"
+                    className="w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm shadow-inner focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-100"
+                  />
+                </div>
+
+                <div className="grid gap-4">
+                  <label className="text-sm font-semibold text-slate-700" htmlFor="githubId">
+                    GitHub ID <span className="text-rose-500">*</span>
+                  </label>
+                  <input
+                    id="githubId"
+                    name="githubId"
+                    type="text"
+                    value={formData.githubId}
+                    onChange={handleChange}
+                    placeholder="github.com/yourusername"
                     className="w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm shadow-inner focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-100"
                   />
                 </div>
@@ -543,7 +717,7 @@ export default function Home() {
             <div>
               <h4 className="mb-4 font-semibold text-white">Contact</h4>
               <div className="space-y-2 text-sm text-white/70">
-                <p>WhatsApp: <a href="https://wa.me/919007915334" className="text-emerald-300 hover:underline">9007915334</a></p>
+                <p>Email: <a href="mailto:hridam.basu@gmail.com" className="text-emerald-300 hover:underline">hridam.basu@gmail.com</a></p>
                 <p>Starting: January 2026</p>
               </div>
             </div>

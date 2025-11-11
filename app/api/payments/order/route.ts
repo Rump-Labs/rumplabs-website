@@ -9,6 +9,16 @@ interface CheckoutRequestBody {
     name?: string;
     email?: string;
     contact?: string;
+    profession?: string;
+    university?: string;
+    major?: string;
+    currentCompany?: string;
+    twitterHandle?: string;
+    interestReason?: string;
+    knowledgeLevel?: string;
+    telegramId?: string;
+    linkedinId?: string;
+    githubId?: string;
   };
 }
 
@@ -48,6 +58,16 @@ export async function POST(request: Request) {
           name: body.customer.name,
           email: body.customer.email,
           contact: body.customer.contact,
+          profession: body.customer.profession || null,
+          university: body.customer.university || null,
+          major: body.customer.major || null,
+          current_company: body.customer.currentCompany || null,
+          twitter_handle: body.customer.twitterHandle || null,
+          interest_reason: body.customer.interestReason || null,
+          knowledge_level: body.customer.knowledgeLevel || null,
+          telegram_id: body.customer.telegramId || null,
+          linkedin_id: body.customer.linkedinId || null,
+          github_id: body.customer.githubId || null,
           amount_due_inr: pricing.amountDueINR,
           classification: pricing.classification,
           country_code: pricing.countryCode,

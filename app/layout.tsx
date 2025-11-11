@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Rump Labs Payment Desk",
+  title: "Rump Gurukul Registration",
   description:
     "Eligibility-aware payment experience powered by Razorpay checkout and SheerID student verification.",
 };
