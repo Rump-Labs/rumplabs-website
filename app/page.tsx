@@ -327,13 +327,13 @@ export default function Home() {
                   <p className="mb-4 text-lg text-emerald-300">Founder, Senior Cryptography Researcher & Engineer</p>
                   <div className="mb-6 space-y-3 text-sm leading-relaxed text-white/80">
                     <p>
-                      Hridam Basu is the Founder of Rump Labs. He has over a decade of experience in Cryptography Research and Engineering in the Blockchain industry. He has previously worked with leading Web3 projects such as Ethereum Foundation's Privacy and Scaling Explorations (PSE) team, Polygon, Aztec, Findora, Circularise, and Bolt Labs, building advanced systems based on zero-knowledge proofs and secure multiparty computation.
+                      Hridam Basu is the <span className="font-semibold text-white">Founder of Rump Labs</span>. He has over a decade of experience in <span className="font-semibold text-white">Cryptography Research and Engineering in the Blockchain industry</span>. He has previously worked with leading Web3 projects such as <span className="font-semibold text-white">Ethereum Foundation&apos;s Privacy and Scaling Explorations (PSE) team, Polygon, Aztec, Findora, Circularise, and Bolt Labs</span>, building advanced systems based on <span className="font-semibold text-white">zero-knowledge proofs</span> and <span className="font-semibold text-white">secure multiparty computation</span>.
                     </p>
                     <p>
-                      His work spans confidential transactions, privacy-preserving identity solutions, supply chain traceability, and blockchain gaming wallets. Hridam has also held research roles at AT&T Labs, NTT Labs, and TCS Labs, and has been an invited speaker at international conferences like Devcon and universities worldwide.
+                      His work spans confidential transactions, privacy-preserving identity solutions, supply chain traceability, and blockchain gaming wallets. Hridam has also held research roles at <span className="font-semibold text-white">AT&amp;T Labs, NTT Labs</span>, and <span className="font-semibold text-white">TCS Labs</span>, and has been an invited speaker at international conferences like <span className="font-semibold text-white">Devcon</span> and universities worldwide.
                     </p>
                     <p>
-                      He holds an M.S. in Computer Science from <span className="font-semibold text-white">Northeastern University, Boston</span>, and a B.E. in Information Technology from <span className="font-semibold text-white">Jadavpur University, Kolkata</span>.
+                      He holds an <span className="font-semibold text-white">M.S. in Computer Science</span> from <span className="font-semibold text-white">Northeastern University, Boston</span>, and a <span className="font-semibold text-white">B.E. in Information Technology</span> from <span className="font-semibold text-white">Jadavpur University, Kolkata</span>.
                     </p>
                   </div>
                   <div className="flex flex-wrap justify-center gap-3 md:justify-start">
