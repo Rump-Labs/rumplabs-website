@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-
-const SITE = "https://rumplabs.xyz";
+import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Rump Gurukul — Zero-knowledge proofs, taught properly",

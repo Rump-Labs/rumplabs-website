@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { SITE } from "@/lib/site";
 import { Archivo, Inter_Tight, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -21,8 +22,6 @@ const mono = IBM_Plex_Mono({
   weight: ["400", "500"],
   display: "swap",
 });
-
-const SITE = "https://rumplabs.xyz";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),
