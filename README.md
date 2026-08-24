@@ -1,4 +1,13 @@
-## Rump Labs Payment Desk
+## Rump Labs
+
+Two surfaces in one Next.js app:
+
+- **`/` — the agency landing page.** Rump Labs positioned as a technical-services firm: fractional CTO, POC/MVP builds, delivery ownership, AI automation, and Web3/ZK engineering. Copy lives in `lib/content.ts`; sections in `components/site/`; design tokens in `app/globals.css`. Every CTA books https://calendly.com/agnijdutta413/30min.
+- **`/gurukul` — the ZK course registration page** (the original payment desk, moved from `/`).
+
+The hero's visual payload is `components/site/ProductCards.tsx` — a fanned row of real product surfaces (deploy log, PR review, contract test run, agent eval, ADR, sprint status, ZK circuit) rendered as HTML/CSS. No stock imagery, no decorative artwork.
+
+### Gurukul payment desk
 
 Eligibility-aware checkout that combines Razorpay payments with SheerID student verification. Domestic visitors from India see ₹10,000 pricing with an instant ₹5,000 concession once their student ID is verified. International visitors are quoted the INR equivalent of $200.
 

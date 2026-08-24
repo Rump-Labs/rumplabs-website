@@ -1,21 +1,61 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Archivo, Inter_Tight, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const display = Archivo({
+  variable: "--font-display",
   subsets: ["latin"],
+  display: "swap",
+  axes: ["wdth"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const sans = Inter_Tight({
+  variable: "--font-sans",
   subsets: ["latin"],
+  display: "swap",
 });
+
+const mono = IBM_Plex_Mono({
+  variable: "--font-mono",
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  display: "swap",
+});
+
+const SITE = "https://rumplabs.xyz";
 
 export const metadata: Metadata = {
-  title: "Rump Gurukul Registration",
+  metadataBase: new URL(SITE),
+  title: {
+    default: "Rump Labs — Your build is stalled. We finish it.",
+    template: "%s · Rump Labs",
+  },
   description:
-    "Eligibility-aware payment experience powered by Razorpay checkout and SheerID student verification.",
+    "The technical half of your company. Consultancy, POCs, delivery, AI automation and Web3/ZK engineering — scoped in writing, delivered in days. You own the repo, the cloud account and the keys from day one.",
+  keywords: [
+    "fractional CTO",
+    "MVP development agency",
+    "technical consultancy",
+    "AI automation",
+    "LLM agents",
+    "Web3 development",
+    "zero-knowledge proofs",
+    "startup incubator",
+  ],
+  openGraph: {
+    type: "website",
+    url: SITE,
+    siteName: "Rump Labs",
+    title: "Rump Labs — Your build is stalled. We finish it.",
+    description:
+      "Scoped in writing, delivered in days. One accountable engineer, and your repo, cloud account and keys from day one.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Rump Labs — Your build is stalled. We finish it.",
+    description:
+      "Consultancy, POCs, delivery, AI automation and Web3/ZK. Scope first, then money moves.",
+  },
 };
 
 export default function RootLayout({
@@ -25,9 +65,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${display.variable} ${sans.variable} ${mono.variable} antialiased`}>
         {children}
       </body>
     </html>
