@@ -1,6 +1,5 @@
 import type { MetadataRoute } from "next";
-
-const SITE = "https://rumplabs.xyz";
+import { SITE } from "@/lib/site";
 
 /**
  * Open to search crawlers and to answer engines alike. The AI user agents are

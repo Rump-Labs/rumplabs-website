@@ -14,8 +14,7 @@ import { Statement } from "@/components/site/Statement";
 import { TheCall } from "@/components/site/TheCall";
 import { Ticker } from "@/components/site/Ticker";
 import { CALENDLY, ctaBand, faqs, offers, services } from "@/lib/content";
-
-const SITE = "https://rumplabs.xyz";
+import { SITE } from "@/lib/site";
 
 const jsonLd = {
   "@context": "https://schema.org",

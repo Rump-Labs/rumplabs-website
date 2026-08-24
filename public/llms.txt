@@ -80,9 +80,9 @@ gated phases rather than hiding the true size inside smaller invoices.
 
 ## Pages
 
-- [Rump Labs](https://rumplabs.xyz): the practice — services, engagements, how
+- [Rump Labs](https://www.rumplabs.xyz): the practice — services, engagements, how
   engagements are scoped and de-risked, honest limits, and FAQs.
-- [Rump Gurukul](https://rumplabs.xyz/gurukul): the zero-knowledge proofs
+- [Rump Gurukul](https://www.rumplabs.xyz/gurukul): the zero-knowledge proofs
   cohort — syllabus, instructor, what is included, and enrolment.
 
 ## Contact
