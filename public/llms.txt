@@ -1,0 +1,96 @@
+# Rump Labs
+
+> Rump Labs is a technical services firm. It acts as the technical half of a
+> founder's company: technical consultancy, POC and MVP development, delivery
+> management, technical distribution, AI automation, and Web3 / zero-knowledge
+> engineering. Every engagement is scoped in writing, with a fixed price agreed
+> before work starts, and is measured in days or weeks rather than quarters.
+
+Rump Labs is based in India and works global hours. The defining commitment is
+ownership: from day one the client holds the GitHub repository, the cloud
+account, the API keys and the domain, so an engagement can end at any point
+without the client losing access to what they paid for. Architectural decisions
+are recorded as an ADR log the client keeps. Acceptance is a passing test suite
+or an agreed evaluation threshold, not an opinion.
+
+Rump Labs also runs Rump Gurukul, a zero-knowledge proofs course, which is the
+firm's evidence for its cryptography claims rather than a separate business.
+
+## Engagements
+
+Five fixed-shape engagements. Each has a written boundary, a delivery date, and
+a guarantee that costs Rump Labs money if the estimate was wrong. Prices are
+quoted on the introductory call.
+
+- The Technical Brief: a written technical read on the product, delivered in
+  three business days. Recommended architecture, build sequence, the decisions
+  that matter, a real cost and time range, and named risks with a mitigation
+  against each. The client keeps the document whether or not they hire the firm.
+- Fractional CTO: a monthly retainer with a capped, tracked number of hours.
+  Architecture, hiring input, code and PR review, and a monthly written record
+  of every technical decision and its reasoning. Rolling, 30 days notice.
+- One Workflow, Automated: one repeated manual process built and deployed as an
+  automation in ten business days, on the client's infrastructure, with failure
+  handling, a runbook and a walkthrough recording.
+- Contract Sprint: one Solidity contract written to spec, or one contract of up
+  to 500 lines torn down line by line with findings graded by severity. Twelve
+  business days. Explicitly pre-audit work, not a formal audit.
+- POC Sprint: one demo-able feature — one user, one path, one outcome — built
+  and deployed to a live URL in three weeks from scope-lock, with a repository
+  and a recorded demo run.
+
+If a build is larger than these shapes, Rump Labs says so in writing on the
+first call with an honest range, and either declines or sequences the work into
+gated phases rather than hiding the true size inside smaller invoices.
+
+## What Rump Labs does not do
+
+- Compliance-certified healthcare or financial systems (HIPAA, SOC 2)
+- 24/7 on-call SRE rotations
+- Mobile app store release management and review appeals
+- Staff augmentation or embedded headcount on a client org chart
+- Quarter-long enterprise programmes
+
+## Rump Gurukul
+
+- A ten-week certification cohort on zero-knowledge proofs in blockchain,
+  starting January 2026.
+- Two live lectures a week, Saturdays and Sundays, 11:00-13:00 IST, two hours
+  each. Every session is recorded.
+- No prerequisites and no prior coding or cryptography knowledge required.
+- Syllabus: cryptographic foundations and elliptic curves; interactive proofs
+  including Schnorr and Bulletproofs; modern proof systems Groth16, PLONK and
+  STARKs plus recursive frameworks Halo2, Nova and SuperNova; lookup arguments,
+  sum-check protocols and KZG commitments; ZK-Rollups, ZK-EVMs, ZK-VMs and
+  ZK-Bridges with case studies from zkSync, StarkNet, Polygon and Succinct Labs;
+  circuit development in Circom, Halo2, Noir, Leo and ZoKrates; confidential
+  applications on Aztec; and a final group project presentation.
+- Includes group projects, project presentations, a completion certificate,
+  course materials, job referrals where they can be made, and an internship
+  track at Rump Labs based on performance.
+- Taught by Hridam Basu, founder of Rump Labs, a cryptography researcher and
+  engineer with over a decade in the blockchain industry. Previously worked with
+  the Ethereum Foundation's Privacy and Scaling Explorations team, Polygon,
+  Aztec, Findora, Circularise and Bolt Labs, and held research roles at AT&T
+  Labs, NTT Labs and TCS Labs. Invited speaker at Devcon and at universities
+  internationally. M.S. Computer Science, Northeastern University; B.E.
+  Information Technology, Jadavpur University.
+- Pricing is location-aware, with a reduced student rate for verified students
+  in India. The fee is shown on the enrolment page.
+
+## Pages
+
+- [Rump Labs](https://rumplabs.xyz): the practice — services, engagements, how
+  engagements are scoped and de-risked, honest limits, and FAQs.
+- [Rump Gurukul](https://rumplabs.xyz/gurukul): the zero-knowledge proofs
+  cohort — syllabus, instructor, what is included, and enrolment.
+
+## Contact
+
+- Book a 30-minute call: https://calendly.com/agnijdutta413/30min
+- Email: contact@rumplabs.xyz
+- Code: https://github.com/Rump-Labs
+
+The introductory call is free and produces a written scope and a price whether
+or not the client engages the firm. If Rump Labs is the wrong fit, it says so on
+the call.
