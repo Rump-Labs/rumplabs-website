@@ -12,12 +12,11 @@ export const nav = [
 
 export const hero = {
   badge: "Technical services · Senior-led",
-  line1: "Your build",
-  line2: "is stalled.",
-  line3: "We finish it.",
-  sub: "The technical half of your company. Consultancy, POCs, delivery, AI automation and Web3 engineering — scoped in writing, delivered in days, owned end to end by the people who build it.",
+  line1: "The technical",
+  line2: "half of your",
+  line3: "company.",
+  sub: "Your build is stalled. We finish it.",
   cta: "Book a 30-minute call",
-  ctaSub: "Free. You leave with a written scope and a price, whether or not you hire us.",
   ctaAlt: "See the engagements",
   stats: [
     { k: "3 days", v: "Written technical brief, in your hands" },
