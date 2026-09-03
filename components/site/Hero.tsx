@@ -4,6 +4,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { CALENDLY, hero } from "@/lib/content";
 import { EASE } from "./motion";
 import { Shell } from "./ui";
+import { LogoCarousel } from "./LogoCarousel";
 
 const rise = {
   hidden: { opacity: 0, y: 26 },
@@ -71,11 +72,10 @@ export function Hero() {
           </motion.div>
 
           </div>
-          <motion.p variants={rise} className="mt-6 text-[0.92rem] leading-[1.5] text-text-3">
-            {hero.ctaSub}
-          </motion.p>
         </motion.div>
       </Shell>
+
+      <LogoCarousel />
 
       <Shell className="mt-[clamp(56px,7vw,96px)]">
         <motion.dl

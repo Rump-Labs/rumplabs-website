@@ -218,6 +218,9 @@ body {
   width: max-content;
   animation: rl-marquee 46s linear infinite;
 }
+.logo-track {
+  animation-duration: 34s;
+}
 .marquee:hover .marquee-track {
   animation-play-state: paused;
 }
