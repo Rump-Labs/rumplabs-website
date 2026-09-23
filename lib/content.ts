@@ -6,6 +6,7 @@ export const nav = [
   { label: "What we do", href: "#services" },
   { label: "Engagements", href: "#engagements" },
   { label: "How it works", href: "#process" },
+  { label: "Talks", href: "#talks" },
   { label: "FAQ", href: "#faq" },
   { label: "Gurukul", href: "/gurukul" },
 ];
@@ -359,6 +360,22 @@ export const deliverables = {
     ["Delivery management", "Scope document, weekly written status briefs, and a decision log"],
     ["Any build engagement", "ADR log — every architectural decision, why it was made, what was rejected"],
     ["Handover", "Loom walkthrough of the codebase and deployment, for whoever inherits it"],
+  ],
+};
+
+export const talks = {
+  badge: "Talks",
+  line1: "We show up",
+  line2: "and explain the work.",
+  lede: "No slide deck of logos — just the team on stage, walking through the cryptography and the tradeoffs, in public.",
+  items: [
+    {
+      id: "kUv1nR3HQ8w",
+      title: "Anon-Aadhaar: a privacy-preserving identity protocol using Halo2 and Noir",
+      speaker: "Hridam Basu",
+      venue: "Devcon SEA",
+      href: "https://www.youtube.com/watch?v=kUv1nR3HQ8w",
+    },
   ],
 };
 

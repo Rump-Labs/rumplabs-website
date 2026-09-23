@@ -11,6 +11,7 @@ import { Engagements } from "@/components/site/Engagements";
 import { Problem } from "@/components/site/Problem";
 import { Services } from "@/components/site/Services";
 import { Statement } from "@/components/site/Statement";
+import { Talks } from "@/components/site/Talks";
 import { TheCall } from "@/components/site/TheCall";
 import { Ticker } from "@/components/site/Ticker";
 import { CALENDLY, ctaBand, faqs, offers, services } from "@/lib/content";
@@ -107,6 +108,7 @@ export default function Home() {
         <TheCall />
         <Deliverables />
         <Honesty />
+        <Talks />
         <CtaBand {...ctaBand.late} />
         <Faq />
         <FinalCta />
