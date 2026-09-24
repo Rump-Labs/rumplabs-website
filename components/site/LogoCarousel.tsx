@@ -34,6 +34,27 @@ const MARKS: Record<string, React.ReactNode> = {
   ),
 };
 
+const monogram = (letter: string) => (
+  <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" aria-hidden>
+    <rect x="1.5" y="1.5" width="21" height="21" rx="6" stroke="currentColor" strokeWidth="1.6" />
+    <text
+      x="12"
+      y="16.5"
+      textAnchor="middle"
+      fontSize="12.5"
+      fontWeight="700"
+      fill="currentColor"
+      fontFamily="ui-sans-serif, system-ui, sans-serif"
+    >
+      {letter}
+    </text>
+  </svg>
+);
+
+for (const name of ["QEDIT", "Circularise", "Bolt Labs", "Aztec", "Findora", "Discreet Labs"]) {
+  MARKS[name] = monogram(name[0]);
+}
+
 const LOGOS: Logo[] = Object.entries(MARKS).map(([name, mark]) => ({ name, mark }));
 
 export function LogoCarousel({ label = "Trusted by teams at" }: { label?: string }) {
@@ -47,7 +68,10 @@ export function LogoCarousel({ label = "Trusted by teams at" }: { label?: string
     <Shell className="mt-[clamp(40px,5vw,64px)]">
       <p className="mono text-text-3">{label}</p>
       <div className={`mt-5 ${reduced ? "overflow-x-auto" : "marquee"}`}>
-        <ul className={`flex items-center ${reduced ? "" : "marquee-track logo-track"}`}>
+        <ul
+          className={`flex items-center ${reduced ? "" : "marquee-track logo-track"}`}
+          style={reduced ? undefined : { animationDuration: `${LOGOS.length * 6.8}s` }}
+        >
           {row.map((l, i) => (
             <li
               key={`${l.name}-${i}`}
