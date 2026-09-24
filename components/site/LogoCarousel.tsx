@@ -3,7 +3,7 @@
 import { useReducedMotion } from "framer-motion";
 import { Shell } from "./ui";
 
-type Logo = { name: string; mark: React.ReactNode };
+type Logo = { name: string; mark: React.ReactNode; wordmark?: boolean };
 
 const MARKS: Record<string, React.ReactNode> = {
   Polygon: (
@@ -34,28 +34,53 @@ const MARKS: Record<string, React.ReactNode> = {
   ),
 };
 
-const monogram = (letter: string) => (
-  <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" aria-hidden>
-    <rect x="1.5" y="1.5" width="21" height="21" rx="6" stroke="currentColor" strokeWidth="1.6" />
-    <text
-      x="12"
-      y="16.5"
-      textAnchor="middle"
-      fontSize="12.5"
-      fontWeight="700"
-      fill="currentColor"
-      fontFamily="ui-sans-serif, system-ui, sans-serif"
-    >
-      {letter}
-    </text>
-  </svg>
+const maskLogo = (file: string, ratio: number, h = 24) => (
+  <span
+    aria-hidden
+    className="block bg-current"
+    style={{
+      height: h,
+      width: h * ratio,
+      maskImage: `url(/logos/${file})`,
+      WebkitMaskImage: `url(/logos/${file})`,
+      maskSize: "contain",
+      WebkitMaskSize: "contain",
+      maskRepeat: "no-repeat",
+      WebkitMaskRepeat: "no-repeat",
+      maskPosition: "center",
+      WebkitMaskPosition: "center",
+    }}
+  />
 );
 
-for (const name of ["QEDIT", "Circularise", "Bolt Labs", "Aztec", "Findora", "Discreet Labs"]) {
-  MARKS[name] = monogram(name[0]);
-}
+MARKS.Circularise = maskLogo("circularise.svg", 1);
+MARKS.Findora = maskLogo("findora.svg", 1, 26);
 
-const LOGOS: Logo[] = Object.entries(MARKS).map(([name, mark]) => ({ name, mark }));
+// Wordmarks already contain the company name, so the text label is skipped.
+const WORDMARKS: Record<string, React.ReactNode> = {
+  QEDIT: maskLogo("qedit.svg", 1920 / 722, 22),
+  Aztec: maskLogo("aztec.svg", 156 / 40, 22),
+  "Bolt Labs": (
+    <span aria-hidden className="relative block h-7 w-[88px] overflow-hidden">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/logos/bolt-labs.jpg"
+        alt=""
+        className="absolute left-0 top-[-27px] h-[88px] w-[88px] max-w-none mix-blend-multiply [filter:grayscale(1)_contrast(1.5)_brightness(1.1)]"
+      />
+    </span>
+  ),
+  "Discreet Labs": (
+    <span aria-hidden className="text-[13px] font-bold uppercase tracking-[0.14em]">
+      Discreet Labs
+    </span>
+  ),
+};
+
+const LOGOS: Logo[] = [
+  ...Object.entries(MARKS).map(([name, mark]) => ({ name, mark })),
+  ...Object.entries(WORDMARKS).map(([name, mark]) => ({ name, mark, wordmark: true })),
+];
 
 export function LogoCarousel({ label = "Trusted by teams at" }: { label?: string }) {
   const reduced = useReducedMotion();
@@ -79,7 +104,11 @@ export function LogoCarousel({ label = "Trusted by teams at" }: { label?: string
               aria-hidden={i >= base.length}
             >
               {l.mark}
-              <span className="whitespace-nowrap text-[15px] font-medium tracking-[-0.01em]">{l.name}</span>
+              {l.wordmark ? (
+                <span className="sr-only">{l.name}</span>
+              ) : (
+                <span className="whitespace-nowrap text-[15px] font-medium tracking-[-0.01em]">{l.name}</span>
+              )}
             </li>
           ))}
         </ul>
