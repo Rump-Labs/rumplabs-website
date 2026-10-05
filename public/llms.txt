@@ -75,8 +75,8 @@ gated phases rather than hiding the true size inside smaller invoices.
   Labs, NTT Labs and TCS Labs. Invited speaker at Devcon and at universities
   internationally. M.S. Computer Science, Northeastern University; B.E.
   Information Technology, Jadavpur University.
-- Pricing is location-aware, with a reduced student rate for verified students
-  in India. The fee is shown on the enrolment page.
+- Pricing is location-aware. Early-bird enrolment in India is ₹20,000 (down
+  from ₹25,000). The fee is shown on the enrolment page.
 
 ## Pages
 

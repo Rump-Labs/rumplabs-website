@@ -5,7 +5,6 @@ import { loadRazorpay } from "@/lib/razorpay";
 
 interface CheckoutButtonProps {
   amountINR: number;
-  studentVerified: boolean;
   disabled?: boolean;
   customer: {
     name: string;
@@ -19,7 +18,7 @@ interface CheckoutButtonProps {
 export type CheckoutSuccessPayload = RazorpaySuccessResponse;
 
 export function CheckoutButton(props: CheckoutButtonProps) {
-  const { amountINR, studentVerified, customer, disabled, onError, onSuccess } = props;
+  const { amountINR, customer, disabled, onError, onSuccess } = props;
   const [loading, setLoading] = useState(false);
 
   const handleCheckout = async () => {
@@ -35,10 +34,7 @@ export function CheckoutButton(props: CheckoutButtonProps) {
       const response = await fetch("/api/payments/order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          studentVerified,
-          customer,
-        }),
+        body: JSON.stringify({ customer }),
       });
 
       if (!response.ok) {
@@ -59,9 +55,6 @@ export function CheckoutButton(props: CheckoutButtonProps) {
           name: customer.name,
           email: customer.email,
           contact: customer.contact,
-        },
-        notes: {
-          student_discount: data.pricing.studentDiscountApplied ? "yes" : "no",
         },
         theme: {
           color: "#2C8A91",

@@ -4,7 +4,6 @@ import { amountInPaise, buildPricing } from "@/lib/pricing";
 import { supabase } from "@/lib/supabase";
 
 interface CheckoutRequestBody {
-  studentVerified?: boolean;
   customer?: {
     name?: string;
     email?: string;
@@ -34,7 +33,7 @@ export async function POST(request: Request) {
   }
 
   const body = (await request.json()) as CheckoutRequestBody;
-  const pricing = buildPricing(request.headers, Boolean(body.studentVerified));
+  const pricing = buildPricing(request.headers);
 
   const razorpay = new Razorpay({ key_id: keyId, key_secret: keySecret });
 
@@ -46,7 +45,6 @@ export async function POST(request: Request) {
       notes: {
         classification: pricing.classification,
         country: pricing.countryCode ?? "unknown",
-        student_discount: pricing.studentDiscountApplied ? "yes" : "no",
       },
     });
 
@@ -71,8 +69,8 @@ export async function POST(request: Request) {
           amount_due_inr: pricing.amountDueINR,
           classification: pricing.classification,
           country_code: pricing.countryCode,
-          student_verified: body.studentVerified || false,
-          student_discount_applied: pricing.studentDiscountApplied,
+          student_verified: false,
+          student_discount_applied: false,
           payment_status: 'pending',
           created_at: new Date().toISOString(),
         });

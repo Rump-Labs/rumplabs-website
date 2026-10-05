@@ -1,5 +1,5 @@
-const DOMESTIC_PRICE_INR = 10_000;
-const STUDENT_PRICE_INR = 5_000;
+const DOMESTIC_LIST_PRICE_INR = 25_000;
+const DOMESTIC_EARLY_BIRD_PRICE_INR = 20_000;
 const INTERNATIONAL_PRICE_USD = 200;
 
 export type PricingClassification = "domestic" | "international";
@@ -9,9 +9,8 @@ export interface PricingResult {
   classification: PricingClassification;
   amountDueINR: number;
   domesticINR: number;
-  studentINR: number;
+  domesticListINR: number;
   internationalINR: number;
-  studentDiscountApplied: boolean;
   usdToInrRate: number;
   reason: string;
 }
@@ -49,19 +48,13 @@ function getUsdToInrRate(): number {
   return 83; // Reasonable default as of 2025-11.
 }
 
-export function buildPricing(headers: Headers, studentVerified = false): PricingResult {
+export function buildPricing(headers: Headers): PricingResult {
   const countryCode = extractCountry(headers);
   const classification: PricingClassification = countryCode === "IN" ? "domestic" : "international";
   const usdToInrRate = getUsdToInrRate();
   const internationalINR = Math.round(INTERNATIONAL_PRICE_USD * usdToInrRate);
 
-  const studentDiscountApplied = studentVerified && classification === "domestic";
-
-  const amountDueINR = classification === "domestic"
-    ? studentDiscountApplied
-      ? STUDENT_PRICE_INR
-      : DOMESTIC_PRICE_INR
-    : internationalINR;
+  const amountDueINR = classification === "domestic" ? DOMESTIC_EARLY_BIRD_PRICE_INR : internationalINR;
 
   const reason = classification === "domestic"
     ? "Detected Indian IP – applying domestic pricing."
@@ -73,10 +66,9 @@ export function buildPricing(headers: Headers, studentVerified = false): Pricing
     countryCode,
     classification,
     amountDueINR,
-    domesticINR: DOMESTIC_PRICE_INR,
-    studentINR: STUDENT_PRICE_INR,
+    domesticINR: DOMESTIC_EARLY_BIRD_PRICE_INR,
+    domesticListINR: DOMESTIC_LIST_PRICE_INR,
     internationalINR,
-    studentDiscountApplied,
     usdToInrRate,
     reason,
   };

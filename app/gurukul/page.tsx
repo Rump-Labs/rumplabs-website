@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { ChangeEvent, useEffect, useMemo, useState } from "react";
 import { CheckoutButton, CheckoutSuccessPayload } from "@/components/CheckoutButton";
-import { SheerIDModal } from "@/components/SheerIDModal";
 import { GurukulFooter } from "@/components/site/GurukulFooter";
 import { GurukulNav } from "@/components/site/GurukulNav";
 import { Ticker } from "@/components/site/Ticker";
@@ -27,9 +26,8 @@ interface QuoteResponse {
   classification: "domestic" | "international";
   amountDueINR: number;
   domesticINR: number;
-  studentINR: number;
+  domesticListINR: number;
   internationalINR: number;
-  studentDiscountApplied: boolean;
   usdToInrRate: number;
   reason: string;
 }
@@ -61,8 +59,6 @@ export default function GurukulPage() {
   const [quote, setQuote] = useState<QuoteResponse | null>(null);
   const [loadingQuote, setLoadingQuote] = useState(true);
   const [quoteError, setQuoteError] = useState<string | null>(null);
-  const [studentVerified, setStudentVerified] = useState(false);
-  const [sheerIdOpen, setSheerIdOpen] = useState(false);
   const [alert, setAlert] = useState<{ type: "success" | "error"; text: string } | null>(null);
   const [formData, setFormData] = useState({
     name: "",
@@ -90,7 +86,6 @@ export default function GurukulPage() {
         }
         const data: QuoteResponse = await response.json();
         setQuote(data);
-        setStudentVerified(data.studentDiscountApplied);
       } catch (error) {
         console.error(error);
         setQuoteError("Could not determine pricing from your location. Showing standard rates.");
@@ -98,10 +93,9 @@ export default function GurukulPage() {
           countryCode: null,
           classification: "international",
           amountDueINR: 16600,
-          domesticINR: 10000,
-          studentINR: 5000,
+          domesticINR: 20000,
+          domesticListINR: 25000,
           internationalINR: 16600,
-          studentDiscountApplied: false,
           usdToInrRate: 83,
           reason: "Fallback pricing.",
         });
@@ -121,18 +115,14 @@ export default function GurukulPage() {
     return () => window.clearTimeout(timeout);
   }, [alert]);
 
-  const studentEligible = quote?.classification === "domestic";
-  const sheerIdConfigured = Boolean(process.env.NEXT_PUBLIC_SHEERID_PROGRAM_ID);
+  const earlyBird = quote?.classification === "domestic";
 
   const amountDueINR = useMemo(() => {
     if (!quote) {
       return 0;
     }
-    if (quote.classification === "domestic") {
-      return studentVerified ? quote.studentINR : quote.domesticINR;
-    }
-    return quote.internationalINR;
-  }, [quote, studentVerified]);
+    return quote.classification === "domestic" ? quote.domesticINR : quote.internationalINR;
+  }, [quote]);
 
   const formattedAmount = amountDueINR ? currencyFormatter.format(amountDueINR) : "—";
 
@@ -462,15 +452,30 @@ export default function GurukulPage() {
                 <div style={LIGHT_SCOPE} className="rounded-[30px] border border-line-2 bg-canvas p-7 text-text-1 shadow-soft md:p-9">
                   <div className="flex flex-wrap items-end justify-between gap-4 border-b border-line pb-6">
                     <div>
-                      <p className="mono text-text-3">Course fee</p>
-                      <p className="num mt-3 text-[clamp(2.2rem,4vw,2.9rem)] leading-none text-text-1">
-                        {loadingQuote ? "…" : formattedAmount}
+                      <div className="flex flex-wrap items-center gap-3">
+                        <p className="mono text-text-3">Course fee</p>
+                        {earlyBird && !loadingQuote && (
+                          <span className="mono rounded-full bg-[color-mix(in_srgb,var(--teal)_12%,transparent)] px-3 py-1 text-teal">
+                            Early bird discount
+                          </span>
+                        )}
+                      </div>
+                      <p className="mt-3 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                        {earlyBird && !loadingQuote && quote && (
+                          <s className="num text-[clamp(1.2rem,2vw,1.5rem)] leading-none text-text-3">
+                            <span className="sr-only">Was </span>
+                            {currencyFormatter.format(quote.domesticListINR)}
+                          </s>
+                        )}
+                        <span className="num text-[clamp(2.2rem,4vw,2.9rem)] leading-none text-text-1">
+                          {earlyBird && !loadingQuote && <span className="sr-only">Now </span>}
+                          {loadingQuote ? "…" : formattedAmount}
+                        </span>
                       </p>
                     </div>
                     {quote && !loadingQuote && (
                       <p className="mono text-text-3">
                         {quote.classification === "domestic" ? "India" : "International"}
-                        {studentVerified ? " · student rate" : ""}
                       </p>
                     )}
                   </div>
@@ -485,51 +490,9 @@ export default function GurukulPage() {
                     {gFields.map(renderField)}
                   </form>
 
-                  {studentEligible && (
-                    <div className="mt-7 rounded-[20px] border border-dashed border-[color-mix(in_srgb,var(--teal)_35%,transparent)] bg-[color-mix(in_srgb,var(--teal)_5%,transparent)] p-5">
-                      <div className="flex flex-wrap items-center justify-between gap-4">
-                        <div>
-                          <p className="text-[0.95rem] font-medium text-teal">
-                            Student rate available
-                          </p>
-                          <p className="mt-1 text-[0.85rem] leading-[1.5] text-text-2">
-                            {sheerIdConfigured
-                              ? `Verify a valid student ID to unlock ₹${quote?.studentINR.toLocaleString("en-IN") ?? "5,000"} pricing.`
-                              : `Studying right now? Claim ₹${quote?.studentINR.toLocaleString("en-IN") ?? "5,000"} pricing.`}
-                          </p>
-                        </div>
-                        {sheerIdConfigured ? (
-                          <button
-                            type="button"
-                            onClick={() => setSheerIdOpen(true)}
-                            className="mono focus-ring shrink-0 rounded-full border border-teal px-4 py-2 text-teal transition-colors duration-200 hover:bg-teal hover:text-white"
-                          >
-                            {studentVerified ? "Verified" : "Verify now"}
-                          </button>
-                        ) : (
-                          <label className="flex shrink-0 cursor-pointer items-center gap-2.5">
-                            <input
-                              type="checkbox"
-                              checked={studentVerified}
-                              onChange={(e) => setStudentVerified(e.target.checked)}
-                              className="h-4 w-4 rounded accent-teal"
-                            />
-                            <span className="mono text-teal">I&apos;m a student</span>
-                          </label>
-                        )}
-                      </div>
-                      {studentVerified && (
-                        <p className="mono mt-4 inline-block rounded-full bg-white px-3 py-1.5 text-teal">
-                          {sheerIdConfigured ? "Verification captured" : "Student rate applied"}
-                        </p>
-                      )}
-                    </div>
-                  )}
-
                   <div className="mt-7">
                     <CheckoutButton
                       amountINR={amountDueINR}
-                      studentVerified={studentVerified}
                       customer={formData}
                       disabled={!formValid || !amountDueINR}
                       onSuccess={onPaymentSuccess}
@@ -539,9 +502,7 @@ export default function GurukulPage() {
 
                   <p className="mt-5 text-[0.8rem] leading-[1.55] text-text-3">
                     By enrolling you agree to Rump Labs&apos; secure checkout. Razorpay processes the
-                    payment
-                    {sheerIdConfigured ? " while SheerID confirms eligibility" : ""}; no documents are
-                    stored on our servers.
+                    payment; no card details are stored on our servers.
                   </p>
                 </div>
               </Reveal>
@@ -562,12 +523,6 @@ export default function GurukulPage() {
           {alert.text}
         </div>
       )}
-
-      <SheerIDModal
-        open={sheerIdOpen}
-        onClose={() => setSheerIdOpen(false)}
-        onVerified={() => setStudentVerified(true)}
-      />
     </>
   );
 }
