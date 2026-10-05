@@ -9,7 +9,7 @@ The hero's visual payload is `components/site/ProductCards.tsx` — a fanned row
 
 ### Gurukul payment desk
 
-Location-aware checkout built on Razorpay. Domestic visitors from India see an early-bird price of ₹20,000 (struck through from ₹25,000). International visitors are quoted the INR equivalent of $200.
+Location-aware checkout built on Razorpay. Everyone is charged the early-bird price of ₹20,000 (struck through from ₹25,000). Visitors from India see INR; international visitors see the USD equivalent at the market rate (fetched hourly from open.er-api.com), and are still charged in INR.
 
 ### Prerequisites
 
@@ -29,10 +29,10 @@ Copy `env.example` to `.env.local` and populate the keys:
 ```
 RAZORPAY_KEY_ID=rzp_test_xxxxxxxxxxxxx
 RAZORPAY_KEY_SECRET=your_razorpay_secret
-USD_TO_INR_RATE=83                      # optional override
+USD_TO_INR_RATE=96                      # optional fallback if the FX feed is down
 ```
 
-`USD_TO_INR_RATE` lets you fine-tune the exchange rate without redeploying.
+`USD_TO_INR_RATE` is only used when the market-rate feed can't be reached.
 
 ### 3. Run locally
 

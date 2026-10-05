@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { ChangeEvent, useEffect, useMemo, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { CheckoutButton, CheckoutSuccessPayload } from "@/components/CheckoutButton";
 import { GurukulFooter } from "@/components/site/GurukulFooter";
 import { GurukulNav } from "@/components/site/GurukulNav";
@@ -25,9 +25,9 @@ interface QuoteResponse {
   countryCode: string | null;
   classification: "domestic" | "international";
   amountDueINR: number;
-  domesticINR: number;
-  domesticListINR: number;
-  internationalINR: number;
+  listINR: number;
+  amountDueUSD: number;
+  listUSD: number;
   usdToInrRate: number;
   reason: string;
 }
@@ -35,6 +35,12 @@ interface QuoteResponse {
 const currencyFormatter = new Intl.NumberFormat("en-IN", {
   style: "currency",
   currency: "INR",
+  maximumFractionDigits: 0,
+});
+
+const usdFormatter = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
   maximumFractionDigits: 0,
 });
 
@@ -92,11 +98,11 @@ export default function GurukulPage() {
         setQuote({
           countryCode: null,
           classification: "international",
-          amountDueINR: 16600,
-          domesticINR: 20000,
-          domesticListINR: 25000,
-          internationalINR: 16600,
-          usdToInrRate: 83,
+          amountDueINR: 20000,
+          listINR: 25000,
+          amountDueUSD: 208,
+          listUSD: 260,
+          usdToInrRate: 96,
           reason: "Fallback pricing.",
         });
       } finally {
@@ -115,16 +121,19 @@ export default function GurukulPage() {
     return () => window.clearTimeout(timeout);
   }, [alert]);
 
-  const earlyBird = quote?.classification === "domestic";
+  const international = quote?.classification === "international";
+  const amountDueINR = quote?.amountDueINR ?? 0;
 
-  const amountDueINR = useMemo(() => {
-    if (!quote) {
-      return 0;
-    }
-    return quote.classification === "domestic" ? quote.domesticINR : quote.internationalINR;
-  }, [quote]);
-
-  const formattedAmount = amountDueINR ? currencyFormatter.format(amountDueINR) : "—";
+  const formattedAmount = !quote
+    ? "—"
+    : international
+      ? usdFormatter.format(quote.amountDueUSD)
+      : currencyFormatter.format(quote.amountDueINR);
+  const formattedList = !quote
+    ? ""
+    : international
+      ? usdFormatter.format(quote.listUSD)
+      : currencyFormatter.format(quote.listINR);
 
   const onPaymentSuccess = (response: CheckoutSuccessPayload) => {
     setAlert({
@@ -454,24 +463,29 @@ export default function GurukulPage() {
                     <div>
                       <div className="flex flex-wrap items-center gap-3">
                         <p className="mono text-text-3">Course fee</p>
-                        {earlyBird && !loadingQuote && (
+                        {quote && !loadingQuote && (
                           <span className="mono rounded-full bg-[color-mix(in_srgb,var(--teal)_12%,transparent)] px-3 py-1 text-teal">
                             Early bird discount
                           </span>
                         )}
                       </div>
                       <p className="mt-3 flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                        {earlyBird && !loadingQuote && quote && (
+                        {quote && !loadingQuote && (
                           <s className="num text-[clamp(1.2rem,2vw,1.5rem)] leading-none text-text-3">
                             <span className="sr-only">Was </span>
-                            {currencyFormatter.format(quote.domesticListINR)}
+                            {formattedList}
                           </s>
                         )}
                         <span className="num text-[clamp(2.2rem,4vw,2.9rem)] leading-none text-text-1">
-                          {earlyBird && !loadingQuote && <span className="sr-only">Now </span>}
+                          {quote && !loadingQuote && <span className="sr-only">Now </span>}
                           {loadingQuote ? "…" : formattedAmount}
                         </span>
                       </p>
+                      {international && !loadingQuote && quote && (
+                        <p className="mt-3 text-[0.8rem] leading-[1.5] text-text-3">
+                          Charged as {currencyFormatter.format(quote.amountDueINR)} at checkout; your bank converts at its rate.
+                        </p>
+                      )}
                     </div>
                     {quote && !loadingQuote && (
                       <p className="mono text-text-3">

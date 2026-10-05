@@ -1,6 +1,6 @@
-const DOMESTIC_LIST_PRICE_INR = 25_000;
-const DOMESTIC_EARLY_BIRD_PRICE_INR = 20_000;
-const INTERNATIONAL_PRICE_USD = 200;
+const LIST_PRICE_INR = 25_000;
+const EARLY_BIRD_PRICE_INR = 20_000;
+const FX_RATE_URL = "https://open.er-api.com/v6/latest/USD";
 
 export type PricingClassification = "domestic" | "international";
 
@@ -8,9 +8,9 @@ export interface PricingResult {
   countryCode: string | null;
   classification: PricingClassification;
   amountDueINR: number;
-  domesticINR: number;
-  domesticListINR: number;
-  internationalINR: number;
+  listINR: number;
+  amountDueUSD: number;
+  listUSD: number;
   usdToInrRate: number;
   reason: string;
 }
@@ -40,35 +40,55 @@ export function extractCountry(headers: Headers): string | null {
   return null;
 }
 
-function getUsdToInrRate(): number {
+function getFallbackUsdToInrRate(): number {
   const configured = Number(process.env.USD_TO_INR_RATE ?? "0");
   if (Number.isFinite(configured) && configured > 0) {
     return configured;
   }
-  return 83; // Reasonable default as of 2025-11.
+  return 96; // Reasonable default as of 2026-10.
 }
 
-export function buildPricing(headers: Headers): PricingResult {
+/** Market USD→INR rate, refreshed at most hourly. Falls back to
+ *  USD_TO_INR_RATE (or a hardcoded default) if the feed is unavailable. */
+async function getUsdToInrRate(): Promise<number> {
+  try {
+    const response = await fetch(FX_RATE_URL, {
+      next: { revalidate: 3600 },
+      signal: AbortSignal.timeout(3000),
+    });
+    if (response.ok) {
+      const data = (await response.json()) as { result?: string; rates?: Record<string, number> };
+      const rate = data.rates?.INR;
+      if (data.result === "success" && typeof rate === "number" && rate > 0) {
+        return rate;
+      }
+    }
+  } catch (error) {
+    console.error("Failed to fetch USD→INR rate", error);
+  }
+  return getFallbackUsdToInrRate();
+}
+
+/** Everyone pays the same INR price (charged in INR); international
+ *  visitors are shown the USD equivalent at the market rate. */
+export async function buildPricing(headers: Headers): Promise<PricingResult> {
   const countryCode = extractCountry(headers);
   const classification: PricingClassification = countryCode === "IN" ? "domestic" : "international";
-  const usdToInrRate = getUsdToInrRate();
-  const internationalINR = Math.round(INTERNATIONAL_PRICE_USD * usdToInrRate);
-
-  const amountDueINR = classification === "domestic" ? DOMESTIC_EARLY_BIRD_PRICE_INR : internationalINR;
+  const usdToInrRate = await getUsdToInrRate();
 
   const reason = classification === "domestic"
-    ? "Detected Indian IP – applying domestic pricing."
+    ? "Detected Indian IP – showing INR pricing."
     : countryCode
-      ? "IP detected outside India – applying international pricing."
-      : "No country hint detected – defaulting to international pricing.";
+      ? "IP detected outside India – showing USD equivalent at market rate."
+      : "No country hint detected – showing USD equivalent at market rate.";
 
   return {
     countryCode,
     classification,
-    amountDueINR,
-    domesticINR: DOMESTIC_EARLY_BIRD_PRICE_INR,
-    domesticListINR: DOMESTIC_LIST_PRICE_INR,
-    internationalINR,
+    amountDueINR: EARLY_BIRD_PRICE_INR,
+    listINR: LIST_PRICE_INR,
+    amountDueUSD: Math.round(EARLY_BIRD_PRICE_INR / usdToInrRate),
+    listUSD: Math.round(LIST_PRICE_INR / usdToInrRate),
     usdToInrRate,
     reason,
   };

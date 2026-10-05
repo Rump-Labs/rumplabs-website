@@ -33,7 +33,7 @@ export async function POST(request: Request) {
   }
 
   const body = (await request.json()) as CheckoutRequestBody;
-  const pricing = buildPricing(request.headers);
+  const pricing = await buildPricing(request.headers);
 
   const razorpay = new Razorpay({ key_id: keyId, key_secret: keySecret });
 
