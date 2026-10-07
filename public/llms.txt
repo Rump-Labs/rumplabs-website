@@ -16,7 +16,7 @@ or an agreed evaluation threshold, not an opinion.
 Rump Labs also runs Rump Gurukul, a zero-knowledge proofs course, which is the
 firm's evidence for its cryptography claims rather than a separate business.
 
-## Engagements
+## Services
 
 Five fixed-shape engagements. Each has a written boundary, a delivery date, and
 a guarantee that costs Rump Labs money if the estimate was wrong. Prices are
@@ -80,8 +80,9 @@ gated phases rather than hiding the true size inside smaller invoices.
 
 ## Pages
 
-- [Rump Labs](https://www.rumplabs.xyz): the practice — services, engagements, how
-  engagements are scoped and de-risked, honest limits, and FAQs.
+- [Rump Labs](https://www.rumplabs.xyz): the practice — services, why
+  clients trust the process, talks, FAQs (including what we don't take on), and
+  how the intro call works.
 - [Rump Gurukul](https://www.rumplabs.xyz/gurukul): the zero-knowledge proofs
   cohort — syllabus, instructor, what is included, and enrolment.
 

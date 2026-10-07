@@ -70,7 +70,7 @@ function TalkCard({ talk, i }: { talk: (typeof talks.items)[number]; i: number }
 
 export function Talks() {
   return (
-    <section id="talks" className="scroll-mt-28 pb-[clamp(80px,10vw,148px)]">
+    <section id="talks" className="scroll-mt-28 py-[clamp(80px,10vw,148px)]">
       <Shell>
         <Reveal>
           <Badge>{talks.badge}</Badge>

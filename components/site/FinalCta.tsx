@@ -17,7 +17,6 @@ export function FinalCta() {
                 <span className="text-text-3">{finalCta.line2}</span>
               </h2>
               <p className="t-lede mt-8">{finalCta.body}</p>
-              <p className="mt-5 text-[1.02rem] font-medium text-text-1">{finalCta.kicker}</p>
 
               <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
                 <a
@@ -47,8 +46,8 @@ export function FinalCta() {
           </div>
 
           <Reveal delay={0.1}>
-            <div className="rounded-[26px] border border-line p-7 md:p-8">
-              <p className="mono text-text-3">What happens on the call</p>
+            <div id="process" className="scroll-mt-28 rounded-[26px] border border-line p-7 md:p-8">
+              <p className="mono text-text-3">How it works</p>
               <ol className="mt-7 space-y-6">
                 {process.map((s, i) => (
                   <li key={s.n} className="grid grid-cols-[28px_1fr] gap-4">

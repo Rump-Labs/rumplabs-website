@@ -7,13 +7,12 @@ import { CALENDLY, CONTACT_EMAIL, GITHUB, offers } from "@/lib/content";
 const columns = [
   {
     head: "Engagements",
-    links: offers.map((o) => ({ label: o.name, href: "#engagements" })),
+    links: offers.map((o) => ({ label: o.name, href: "#services" })),
   },
   {
     head: "Company",
     links: [
-      { label: "What we do", href: "#services" },
-      { label: "Engagements", href: "#engagements" },
+      { label: "Services", href: "#services" },
       { label: "How it works", href: "#process" },
       { label: "FAQ", href: "#faq" },
       { label: "Rump Gurukul", href: "/gurukul" },

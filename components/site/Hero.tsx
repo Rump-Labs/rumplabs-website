@@ -64,7 +64,7 @@ export function Hero() {
               </span>
             </a>
             <a
-              href="#engagements"
+              href="#services"
               className="focus-ring inline-flex h-[56px] items-center justify-center rounded-full border border-line px-7 text-[15px] font-medium text-text-1 transition-all duration-[220ms] hover:-translate-y-0.5 hover:border-text-3"
             >
               {hero.ctaAlt}
