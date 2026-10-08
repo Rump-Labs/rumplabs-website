@@ -36,7 +36,7 @@ export function Trust() {
               <h3 className="t-card mt-5 text-text-1">{it.k}</h3>
               <p className="mt-3 text-[0.95rem] leading-[1.55] text-text-2">{it.v}</p>
               {it.links && (
-                <div className="mt-5 flex gap-5">
+                <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2">
                   {it.links.map((l) =>
                     l.href.startsWith("http") ? (
                       <a key={l.href} href={l.href} target="_blank" rel="noreferrer" className={linkCls}>

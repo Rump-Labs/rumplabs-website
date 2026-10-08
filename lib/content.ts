@@ -3,10 +3,11 @@ export const CONTACT_EMAIL = "contact@rumplabs.xyz";
 export const GITHUB = "https://github.com/Rump-Labs";
 
 export const nav = [
-  { label: "Services", href: "#services" },
-  { label: "How it works", href: "#process" },
-  { label: "Talks", href: "#talks" },
-  { label: "FAQ", href: "#faq" },
+  { label: "Services", href: "/#services" },
+  { label: "How it works", href: "/#process" },
+  { label: "Talks", href: "/#talks" },
+  { label: "FAQ", href: "/#faq" },
+  { label: "Research", href: "/research" },
   { label: "Gurukul", href: "/gurukul" },
 ];
 
@@ -59,9 +60,10 @@ export const trust = {
     },
     {
       k: "Public work",
-      v: "Read our code, and our zero-knowledge course, before you pay for anything.",
+      v: "Read our code, our published research and our zero-knowledge course before you pay for anything.",
       links: [
         { label: "GitHub", href: GITHUB },
+        { label: "Research", href: "/research" },
         { label: "Gurukul", href: "/gurukul" },
       ],
     },

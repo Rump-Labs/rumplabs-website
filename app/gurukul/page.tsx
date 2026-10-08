@@ -441,9 +441,9 @@ export default function GurukulPage() {
                     Enrolment
                   </span>
                   <h2 className="display t-section mt-7 text-text-1">
-                    Ten weeks.
+                    Forty hours.
                     <br />
-                    <span className="text-text-3">Starting January.</span>
+                    <span className="text-text-3">Start any time.</span>
                   </h2>
 
                   <div className="mt-10 grid gap-px overflow-hidden rounded-[22px] border border-line bg-line">

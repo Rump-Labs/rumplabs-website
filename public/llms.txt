@@ -53,10 +53,9 @@ gated phases rather than hiding the true size inside smaller invoices.
 
 ## Rump Gurukul
 
-- A ten-week certification cohort on zero-knowledge proofs in blockchain,
-  starting January 2026.
-- Two live lectures a week, Saturdays and Sundays, 11:00-13:00 IST, two hours
-  each. Every session is recorded.
+- A 40-hour, self-paced certification course on zero-knowledge proofs in
+  blockchain. Lectures are recorded; students start when they enrol and move at
+  their own pace.
 - No prerequisites and no prior coding or cryptography knowledge required.
 - Syllabus: cryptographic foundations and elliptic curves; interactive proofs
   including Schnorr and Bulletproofs; modern proof systems Groth16, PLONK and
@@ -78,13 +77,23 @@ gated phases rather than hiding the true size inside smaller invoices.
 - Pricing is location-aware. Early-bird enrolment in India is ₹20,000 (down
   from ₹25,000). The fee is shown on the enrolment page.
 
+## Research
+
+- Secure Two-Party Quantum Computation with Complete Fairness without Trusted
+  Third Party. Arpita Maitra, Goutam Paul, Asim K. Pal, Asmita Samanta and
+  Hridam Basu (Rump Labs). IACR Cryptology ePrint Archive 2026/883, May 2026,
+  CC BY. Shows for the first time that some functions admit secure two-party
+  quantum computation with complete fairness and no trusted third party.
+  https://eprint.iacr.org/2026/883
+
 ## Pages
 
 - [Rump Labs](https://www.rumplabs.xyz): the practice — services, why
   clients trust the process, talks, FAQs (including what we don't take on), and
   how the intro call works.
+- [Research](https://www.rumplabs.xyz/research): published cryptography papers.
 - [Rump Gurukul](https://www.rumplabs.xyz/gurukul): the zero-knowledge proofs
-  cohort — syllabus, instructor, what is included, and enrolment.
+  self-paced course — syllabus, instructor, what is included, and enrolment.
 
 ## Contact
 

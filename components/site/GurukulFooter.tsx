@@ -92,7 +92,7 @@ export function GurukulFooter() {
         <div className="mx-auto flex w-full max-w-[1180px] flex-wrap items-center justify-between gap-3 px-5 py-6 sm:px-7 lg:px-10">
           <span className="mono text-text-3">© {new Date().getFullYear()} Rump Labs</span>
           <span className="mono text-text-3">rumplabs.xyz</span>
-          <span className="mono text-text-3">Cohort starts January 2026</span>
+          <span className="mono text-text-3">Self-paced · Enrol any time</span>
         </div>
       </div>
     </footer>

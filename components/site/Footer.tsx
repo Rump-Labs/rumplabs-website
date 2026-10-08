@@ -6,15 +6,16 @@ import { CALENDLY, CONTACT_EMAIL, GITHUB, offers } from "@/lib/content";
 
 const columns = [
   {
-    head: "Engagements",
-    links: offers.map((o) => ({ label: o.name, href: "#services" })),
+    head: "Services",
+    links: offers.map((o) => ({ label: o.name, href: "/#services" })),
   },
   {
     head: "Company",
     links: [
-      { label: "Services", href: "#services" },
-      { label: "How it works", href: "#process" },
-      { label: "FAQ", href: "#faq" },
+      { label: "Services", href: "/#services" },
+      { label: "How it works", href: "/#process" },
+      { label: "FAQ", href: "/#faq" },
+      { label: "Research", href: "/research" },
       { label: "Rump Gurukul", href: "/gurukul" },
       { label: "GitHub", href: GITHUB },
     ],

@@ -4,18 +4,18 @@ import { SITE } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Rump Gurukul — Zero-knowledge proofs, taught properly",
   description:
-    "A ten-week certification cohort taking you from blockchain fundamentals to writing your own ZK circuits. No prerequisites. Live sessions, recorded, with group projects and a completion certificate.",
+    "A 40-hour, self-paced certification course taking you from blockchain fundamentals to writing your own ZK circuits. No prerequisites. Recorded lectures, hands-on projects and a completion certificate.",
   openGraph: {
     type: "website",
     title: "Rump Gurukul — Zero-knowledge proofs, taught properly",
     description:
-      "Ten weeks, two live lectures a week. Groth16, PLONK, STARKs, Circom, Halo2 and Noir. No prerequisites.",
+      "40 hours, self-paced. Groth16, PLONK, STARKs, Circom, Halo2 and Noir. No prerequisites.",
   },
   twitter: {
     card: "summary_large_image",
     title: "Rump Gurukul — Zero-knowledge proofs, taught properly",
     description:
-      "A ten-week certification cohort. No prerequisites. Live sessions, recorded, with group projects and a completion certificate.",
+      "A 40-hour, self-paced certification course. No prerequisites. Recorded lectures, hands-on projects and a completion certificate.",
   },
   alternates: { canonical: "/gurukul" },
   keywords: [
@@ -49,7 +49,7 @@ const courseJsonLd = {
       "@id": `${SITE}/gurukul#course`,
       name: "Rump Gurukul — Zero-Knowledge Proofs in Blockchain",
       description:
-        "A ten-week certification cohort taking students from blockchain fundamentals and cryptographic primitives to writing their own zero-knowledge circuits and presenting a working ZK application. No prerequisites and no prior coding or cryptography knowledge required.",
+        "A 40-hour, self-paced certification course taking students from blockchain fundamentals and cryptographic primitives to writing their own zero-knowledge circuits and presenting a working ZK application. No prerequisites and no prior coding or cryptography knowledge required.",
       url: `${SITE}/gurukul`,
       image: `${SITE}/gurukul/opengraph-image.png`,
       inLanguage: "en",
@@ -66,20 +66,19 @@ const courseJsonLd = {
       ],
       coursePrerequisites: "None. No prior coding or cryptography knowledge required.",
       numberOfCredits: 0,
-      timeRequired: "P10W",
+      timeRequired: "PT40H",
       provider: { "@id": `${SITE}/#organization` },
       offers: {
         "@type": "Offer",
         category: "Paid",
         priceCurrency: "INR",
-        availability: "https://schema.org/PreOrder",
+        availability: "https://schema.org/InStock",
         url: `${SITE}/gurukul#enrol`,
       },
       hasCourseInstance: {
         "@type": "CourseInstance",
         courseMode: "Online",
-        courseWorkload: "PT4H",
-        startDate: "2026-01",
+        courseWorkload: "PT40H",
         location: { "@type": "VirtualLocation", url: `${SITE}/gurukul` },
         instructor: { "@id": `${SITE}/#hridam-basu` },
       },

@@ -9,25 +9,25 @@ export const gurukulNav = [
 ];
 
 export const gHero = {
-  badge: "Cohort starts January 2026",
+  badge: "Self-paced · Enrol any time",
   line1: "Zero-knowledge",
   line2: "proofs,",
   line3: "taught properly.",
-  sub: "A ten-week certification course taking you from blockchain fundamentals to writing your own ZK circuits. No prerequisites. No prior coding knowledge required.",
-  cta: "Enrol in the cohort",
+  sub: "A 40-hour, self-paced certification course taking you from blockchain fundamentals to writing your own ZK circuits. No prerequisites. No prior coding knowledge required.",
+  cta: "Enrol now",
   ctaAlt: "Ask a question",
-  ctaSub: "Live sessions, recorded. Group projects, presented. Certificate on completion.",
+  ctaSub: "Recorded lectures, at your own pace. Hands-on projects. Certificate on completion.",
   stats: [
-    { k: "10 weeks", v: "Two live lectures every week" },
-    { k: "Sat & Sun", v: "11:00–13:00 IST, two hours each" },
-    { k: "Recorded", v: "Every session, yours to rewatch" },
+    { k: "40 hours", v: "Self-paced, recorded lectures" },
+    { k: "8 modules", v: "From foundations to ZK in production" },
+    { k: "Certified", v: "Completion certificate from Rump Labs" },
   ],
 };
 
 export const gTicker = [
   "NO PREREQUISITES",
-  "LIVE + RECORDED",
-  "GROUP PROJECTS",
+  "SELF-PACED · 40 HOURS",
+  "HANDS-ON PROJECTS",
   "CIRCOM · HALO2 · NOIR",
   "GROTH16 · PLONK · STARKS",
   "ZK-ROLLUPS & ZK-EVMS",
@@ -43,11 +43,11 @@ export const gStatement = {
   line3: "background.",
   left: {
     label: "Where we start",
-    body: "Week one assumes nothing. We build the mathematics you need — elliptic curves, commitments, the primitives — as we go, in the order you need them. Engineers, students and career-switchers have all started here without a cryptography background.",
+    body: "Module one assumes nothing. We build the mathematics you need — elliptic curves, commitments, the primitives — as we go, in the order you need them. Engineers, students and career-switchers have all started here without a cryptography background.",
   },
   right: {
     label: "Where you finish",
-    body: "By week ten you will have written your own circuits in Circom or Noir, understood why one proof system is chosen over another, and presented a working ZK application you built with your group. Not a certificate of attendance — something you can show.",
+    body: "By the final module you will have written your own circuits in Circom or Noir, understood why one proof system is chosen over another, and built a working ZK application of your own. Not a certificate of attendance — something you can show.",
   },
 };
 
@@ -95,12 +95,11 @@ export const gModules = [
 ];
 
 export const gIncluded = [
-  { k: "Ten-week structure", v: "Two live lectures a week, sequenced so each builds on the last." },
-  { k: "Two hours per lecture", v: "Saturdays and Sundays, 11:00–13:00 IST." },
-  { k: "Session recordings", v: "Every lecture recorded. Miss one and nothing is lost." },
-  { k: "Group projects", v: "Collaborative build work, not solo exercises." },
-  { k: "Project presentations", v: "You present what you built at the end of the cohort." },
-  { k: "Completion certificate", v: "Issued by Rump Labs on finishing the cohort." },
+  { k: "40 hours of lectures", v: "Recorded and sequenced so each one builds on the last." },
+  { k: "Self-paced", v: "Start when you enrol and move at your own speed." },
+  { k: "Hands-on projects", v: "Build work, not just watching lectures." },
+  { k: "Final project", v: "Finish by building a full ZK-based blockchain application." },
+  { k: "Completion certificate", v: "Issued by Rump Labs on finishing the course." },
   { k: "Job referrals", v: "Referrals into crypto and blockchain roles where we can make them." },
   { k: "Internship track", v: "Internship opportunities at Rump Labs based on performance." },
   { k: "Course materials", v: "Slides, circuits and reading, yours to keep afterwards." },
@@ -130,12 +129,12 @@ export const gInstructor = {
 };
 
 export const gDetails = [
-  { k: "Duration", v: "10 weeks, two lectures per week" },
-  { k: "Schedule", v: "Saturdays & Sundays, 11:00–13:00 IST" },
-  { k: "Format", v: "Live online, recorded, with hands-on project work" },
+  { k: "Duration", v: "40 hours of recorded lectures" },
+  { k: "Pace", v: "Self-paced. Start any time" },
+  { k: "Format", v: "Online, with hands-on project work" },
   { k: "Prerequisites", v: "None. No prior coding or cryptography needed" },
   { k: "Certificate", v: "Official completion certificate from Rump Labs" },
-  { k: "After the cohort", v: "Job referrals and internship opportunities" },
+  { k: "After the course", v: "Job referrals and internship opportunities" },
 ];
 
 export interface GField {
@@ -177,7 +176,7 @@ export const gFields: GField[] = [
     name: "interestReason",
     label: "Why do you want to join?",
     type: "textarea",
-    placeholder: "A couple of lines on what you're hoping to get out of the cohort.",
+    placeholder: "A couple of lines on what you're hoping to get out of the course.",
     required: true,
     full: true,
   },
