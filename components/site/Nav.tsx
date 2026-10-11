@@ -36,7 +36,7 @@ export function Nav() {
           />
         </Link>
 
-        <nav className="hidden items-center gap-7 md:flex">
+        <nav className="hidden items-center gap-5 md:flex lg:gap-7">
           {nav.map((item) => (
             <a
               key={item.href}

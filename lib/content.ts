@@ -7,6 +7,7 @@ export const nav = [
   { label: "How it works", href: "/#process" },
   { label: "Talks", href: "/#talks" },
   { label: "FAQ", href: "/#faq" },
+  { label: "Gallery", href: "/gallery" },
   { label: "Research", href: "/research" },
   { label: "Gurukul", href: "/gurukul" },
 ];
@@ -242,6 +243,7 @@ export const talks = {
   line1: "We show up",
   line2: "and explain the work.",
   lede: "The team on stage, walking through the cryptography and the tradeoffs in public.",
+  gallery: { label: "See the photo gallery", href: "/gallery" },
   items: [
     {
       id: "kUv1nR3HQ8w",

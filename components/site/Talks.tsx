@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 import { talks } from "@/lib/content";
 import { Reveal } from "./motion";
@@ -76,6 +77,15 @@ export function Talks() {
           <Badge>{talks.badge}</Badge>
           <Heading line1={talks.line1} line2={talks.line2} className="mt-7" />
           <p className="t-lede mt-6 max-w-[62ch]">{talks.lede}</p>
+          <Link
+            href={talks.gallery.href}
+            className="mono-sm focus-ring group mt-6 inline-flex items-center gap-2 text-text-1 underline decoration-line underline-offset-4 transition-colors duration-200 hover:decoration-accent"
+          >
+            {talks.gallery.label}
+            <span aria-hidden className="transition-transform duration-[220ms] group-hover:translate-x-1">
+              →
+            </span>
+          </Link>
         </Reveal>
 
         <div className="mt-[clamp(44px,5vw,72px)] grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

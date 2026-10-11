@@ -15,6 +15,7 @@ const columns = [
       { label: "Services", href: "/#services" },
       { label: "How it works", href: "/#process" },
       { label: "FAQ", href: "/#faq" },
+      { label: "Gallery", href: "/gallery" },
       { label: "Research", href: "/research" },
       { label: "Rump Gurukul", href: "/gurukul" },
       { label: "GitHub", href: GITHUB },
