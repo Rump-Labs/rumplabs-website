@@ -19,7 +19,7 @@ export const galleryIntro = {
   line1: "Off the screen,",
   line2: "in the room.",
   hint: "frames · open any one full size",
-  lede: "A hackathon final, a conclave panel and a hall full of builders. Three events, in photographs.",
+  lede: "Hackathon finals, a conclave panel and halls full of builders. Four events, in photographs.",
 };
 
 export const galleryEvents: GalleryEvent[] = [
@@ -90,6 +90,31 @@ export const galleryEvents: GalleryEvent[] = [
       "A winning team",
       "Trophy, held by everyone at once",
     ],
+  },
+  {
+    id: "stellar-buildathon",
+    dir: "stellar-buildathon",
+    line1: "Stellar",
+    line2: "Build-a-thon",
+    short: "Stellar Build-a-thon Kolkata",
+    kicker: "Stellar · Kolkata · Judging",
+    blurb: "Judging in Kolkata: table to table through what the teams built on Stellar, then on stage to hand over the prizes.",
+    photos: [
+      "A word to the builders",
+      "Judging, one laptop at a time",
+      "A team walks through its build",
+      "Looking over a demo",
+      "Table by table",
+      "Reading it up close",
+      "Questions for the team",
+      "A demo, mid-explanation",
+      "Addressing the room",
+      "The winning team",
+      "Second runner-up",
+      "Another prize handed over",
+      "The whole room",
+    ],
+    portrait: [2, 4, 6],
   },
 ];
 

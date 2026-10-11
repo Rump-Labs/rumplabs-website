@@ -9,7 +9,7 @@ import { galleryCount, galleryEvents, galleryIntro } from "@/lib/gallery";
 export const metadata: Metadata = {
   title: "Gallery",
   description:
-    "Rump Labs in the room: photographs from IEM Impetus, the Times of India Teachers' Conclave and Calcutta <Hacks/>.",
+    "Rump Labs in the room: photographs from IEM Impetus, the Times of India Teachers' Conclave, Calcutta <Hacks/> and the Stellar Build-a-thon in Kolkata.",
   alternates: { canonical: "/gallery" },
 };
 
