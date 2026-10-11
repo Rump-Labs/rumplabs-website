@@ -13,8 +13,9 @@ const columns = [
     head: "Company",
     links: [
       { label: "Services", href: "/#services" },
-      { label: "How it works", href: "/#process" },
+      { label: "Domains", href: "/#domains" },
       { label: "FAQ", href: "/#faq" },
+      { label: "Talks", href: "/#talks" },
       { label: "Gallery", href: "/gallery" },
       { label: "Research", href: "/research" },
       { label: "Rump Gurukul", href: "/gurukul" },

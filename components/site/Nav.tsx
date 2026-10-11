@@ -5,9 +5,13 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { CALENDLY, nav } from "@/lib/content";
 
+const linkCls =
+  "text-[14px] font-medium text-text-2 transition-colors duration-200 hover:text-text-1";
+
 export function Nav() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [group, setGroup] = useState<string | null>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -36,16 +40,57 @@ export function Nav() {
           />
         </Link>
 
-        <nav className="hidden items-center gap-5 md:flex lg:gap-7">
-          {nav.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="text-[14px] font-medium text-text-2 transition-colors duration-200 hover:text-text-1"
-            >
-              {item.label}
-            </a>
-          ))}
+        <nav className="hidden items-center gap-7 md:flex">
+          {nav.map((item) =>
+            item.children ? (
+              <div
+                key={item.label}
+                className="relative"
+                onMouseEnter={() => setGroup(item.label)}
+                onMouseLeave={() => setGroup(null)}
+                onBlur={(e) => {
+                  if (!e.currentTarget.contains(e.relatedTarget)) setGroup(null);
+                }}
+                onKeyDown={(e) => e.key === "Escape" && setGroup(null)}
+              >
+                <button
+                  type="button"
+                  aria-expanded={group === item.label}
+                  onClick={() => setGroup((g) => (g === item.label ? null : item.label))}
+                  className={`${linkCls} flex items-center gap-1.5`}
+                >
+                  {item.label}
+                  <span
+                    aria-hidden
+                    className={`h-[5px] w-[5px] -translate-y-[1.5px] rotate-45 border-b-[1.5px] border-r-[1.5px] border-current transition-transform duration-200 ${
+                      group === item.label ? "translate-y-[1px] rotate-[225deg]" : ""
+                    }`}
+                  />
+                </button>
+                {group === item.label && (
+                  <div className="absolute left-1/2 top-full w-[290px] -translate-x-1/2 pt-5">
+                    <div className="rounded-[22px] border border-black/[0.08] bg-white p-2 shadow-[0_22px_50px_-24px_rgba(17,17,16,0.45)]">
+                      {item.children.map((c) => (
+                        <a
+                          key={c.href}
+                          href={c.href}
+                          onClick={() => setGroup(null)}
+                          className="block rounded-[15px] px-3.5 py-3 transition-colors duration-150 hover:bg-black/[0.045] focus-visible:bg-black/[0.045] focus-visible:outline-none"
+                        >
+                          <span className="block text-[14px] font-medium text-text-1">{c.label}</span>
+                          <span className="mt-0.5 block text-[12.5px] leading-[1.4] text-text-3">{c.note}</span>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <a key={item.label} href={item.href} className={linkCls}>
+                {item.label}
+              </a>
+            ),
+          )}
         </nav>
 
         <div className="flex items-center gap-2">
@@ -83,16 +128,18 @@ export function Nav() {
       {open && (
         <div className="mx-auto mt-2 w-full max-w-[980px] rounded-[24px] border border-black/[0.08] bg-white/95 p-4 backdrop-blur-xl md:hidden">
           <nav className="flex flex-col">
-            {nav.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                onClick={() => setOpen(false)}
-                className="display border-b border-black/[0.07] py-3 text-[20px] last:border-0"
-              >
-                {item.label}
-              </a>
-            ))}
+            {nav
+              .flatMap((item) => item.children ?? [{ label: item.label, href: item.href ?? "/" }])
+              .map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setOpen(false)}
+                  className="display border-b border-black/[0.07] py-3 text-[20px] last:border-0"
+                >
+                  {item.label}
+                </a>
+              ))}
             <a
               href={CALENDLY}
               target="_blank"

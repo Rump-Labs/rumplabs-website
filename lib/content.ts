@@ -2,14 +2,26 @@ export const CALENDLY = "https://calendly.com/agnijdutta413/30min";
 export const CONTACT_EMAIL = "contact@rumplabs.xyz";
 export const GITHUB = "https://github.com/Rump-Labs";
 
-export const nav = [
+export interface NavItem {
+  label: string;
+  /** omitted on a group: the label opens its children instead */
+  href?: string;
+  children?: { label: string; href: string; note: string }[];
+}
+
+export const nav: NavItem[] = [
   { label: "Services", href: "/#services" },
-  { label: "How it works", href: "/#process" },
-  { label: "Talks", href: "/#talks" },
-  { label: "FAQ", href: "/#faq" },
-  { label: "Gallery", href: "/gallery" },
-  { label: "Research", href: "/research" },
+  { label: "Domains", href: "/#domains" },
+  {
+    label: "Public work",
+    children: [
+      { label: "Research", href: "/research", note: "Open-access cryptography papers" },
+      { label: "Talks", href: "/#talks", note: "The team on stage, on video" },
+      { label: "Gallery", href: "/gallery", note: "Events, in photographs" },
+    ],
+  },
   { label: "Gurukul", href: "/gurukul" },
+  { label: "FAQ", href: "/#faq" },
 ];
 
 export const hero = {
@@ -70,6 +82,49 @@ export const trust = {
     },
   ],
   note: "If your build is bigger than what we do, you hear that on the first call, with the honest range.",
+};
+
+export const domains = {
+  badge: "Domains",
+  line1: "Built across",
+  line2: "five domains.",
+  lede: "The problems change from one industry to the next. The engineering underneath is the same: prove what's true, keep the rest private, and automate what repeats.",
+  items: [
+    {
+      name: "Privacy",
+      body: "Zero-knowledge circuits and confidential transactions, so a product can prove a fact without publishing the data behind it.",
+      stacks: ["Blockchain", "ZK"],
+      link: { label: "Read the research", href: "/research" },
+    },
+    {
+      name: "Authentication",
+      body: "Identity and login that verify a person without storing their documents. Anon-Aadhaar is the public example.",
+      stacks: ["Blockchain", "ZK"],
+      link: { label: "Watch the talk", href: "/#talks" },
+    },
+    {
+      name: "Supply chain",
+      body: "Traceability that lets partners check provenance and compliance claims without exposing supplier data.",
+      stacks: ["Blockchain"],
+    },
+    {
+      name: "Media",
+      body: "Provenance for content: who made it, what changed along the way, and whether it can be trusted.",
+      stacks: ["AI", "Blockchain"],
+    },
+    {
+      name: "Education",
+      body: "Courses and tooling that teach hard cryptography to working engineers, starting with our own zero-knowledge course.",
+      stacks: ["ZK", "AI"],
+      link: { label: "See Gurukul", href: "/gurukul" },
+    },
+  ],
+  stacksTitle: "Emerging Technologies",
+  stacks: [
+    { k: "Blockchain", v: "Smart contracts, ZK circuits and rollups." },
+    { k: "AI", v: "Agents, retrieval pipelines and workflow automation." },
+    { k: "Quantum", v: "Published research on secure quantum computation." },
+  ],
 };
 
 export const servicesSection = {

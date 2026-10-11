@@ -1,3 +1,4 @@
+import { Domains } from "@/components/site/Domains";
 import { Faq } from "@/components/site/Faq";
 import { FinalCta } from "@/components/site/FinalCta";
 import { Footer } from "@/components/site/Footer";
@@ -91,6 +92,7 @@ export default function Home() {
       <main>
         <Hero />
         <Services />
+        <Domains />
         <Trust />
         <Talks />
         <Faq />
